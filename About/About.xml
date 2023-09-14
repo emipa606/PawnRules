@@ -21,6 +21,9 @@
   <loadAfter>
     <li>brrainz.harmony</li>
   </loadAfter>
+  <loadBefore>
+    <li>Orion.Hospitality</li>
+  </loadBefore>
   <description>[img]https://i.imgur.com/buuPQel.png[/img]
 Update of Jaxes mod https://steamcommunity.com/sharedfiles/filedetails/?id=1499843448
 
@@ -74,11 +77,6 @@ This mod is not compatible with my other mod [url=https://steamcommunity.com/sha
 [h1]For Modders[/h1]
 Pawn Rules supports addons created by other modders by allowing easy creation of new rule options while handling the GUI and world storage saving. [url=https://github.com/Jaxe-Dev/PawnRules/wiki/addons]Check out the wiki on addons.[/url]
 
-[h1]Anything else?[h1]
-[url=https://discord.gg/VvSnYQ8]Chat with me on Discord[/url]
-[url=https://patreon.com/jaxe][img]https://i.imgur.com/h1QmGCj.png[/img][/url]
-[url=https://ko-fi.com/forJaxe][img]https://i.imgur.com/0yIlLgp.png[/img][/url]
-
 [img]https://i.imgur.com/PwoNOj4.png[/img]
 [list]
 [*] See if the the error persists if you just have this mod and its requirements active.
@@ -87,5 +85,7 @@ Pawn Rules supports addons created by other modders by allowing easy creation of
 [*] For best support, please use the Discord-channel for error-reporting.
 [*] Do not report errors by making a discussion-thread, I get no notification of that.
 [*] If you have the solution for a problem, please post it to the GitHub repository.
-[/list]</description>
+[/list]
+
+[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3024243615][img]https://img.shields.io/github/v/release/emipa606/PawnRules?label=latest%20version&amp;style=plastic&amp;color=9f1111&amp;labelColor=black[/img][/url]</description>
 </ModMetaData>

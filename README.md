@@ -55,13 +55,6 @@ https://github.com/Jaxe-Dev/PawnRules/releases/tag/v1.1.6]B19 version available 
 
 Pawn Rules supports addons created by other modders by allowing easy creation of new rule options while handling the GUI and world storage saving. https://github.com/Jaxe-Dev/PawnRules/wiki/addons]Check out the wiki on addons.
 
-# Anything else?# 
-https://discord.gg/VvSnYQ8]Chat with me on Discord
-https://patreon.com/jaxe]![Image](https://i.imgur.com/h1QmGCj.png)
-
-https://ko-fi.com/forJaxe]![Image](https://i.imgur.com/0yIlLgp.png)
-
-
 ![Image](https://i.imgur.com/PwoNOj4.png)
 
 
@@ -73,4 +66,7 @@ https://ko-fi.com/forJaxe]![Image](https://i.imgur.com/0yIlLgp.png)
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
 
+
+
+https://steamcommunity.com/sharedfiles/filedetails/changelog/3024243615]![Image](https://img.shields.io/github/v/release/emipa606/PawnRules?label=latest%20version&style=plastic&color=9f1111&labelColor=black)
 
