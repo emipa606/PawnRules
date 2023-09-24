@@ -79,7 +79,7 @@ internal class Binding : IExposable
         }
         else
         {
-            throw new Mod.Exception("Unable to load rules for binding");
+            Rules = new Rules();
         }
     }
 }

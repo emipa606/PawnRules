@@ -1,5 +1,8 @@
 # Changelog for PawnRules
 
+1.4.3 - Should no longer trigger issues when converting a pawn
+
+
 1.4.2 - Added a load-order rule for Hospitality
 
 

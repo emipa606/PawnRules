@@ -232,7 +232,12 @@ internal class Registry : WorldObject
 
     public static Rules GetDefaultRules(PawnType type)
     {
-        return _instance._defaults[type];
+        if (type == null)
+        {
+            return null;
+        }
+
+        return _instance._defaults.TryGetValue(type, out var resultValue) ? resultValue : null;
     }
 
     public static void SetDefaultRules(Rules rules)
@@ -311,6 +316,11 @@ internal class Registry : WorldObject
     private static void ChangeTypeOrCreateRules(Pawn pawn, PawnType type)
     {
         if (type == pawn.GetTargetType())
+        {
+            return;
+        }
+
+        if (type == null)
         {
             return;
         }
