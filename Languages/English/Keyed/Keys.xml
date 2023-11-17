@@ -123,4 +123,6 @@
   <PawnRules.Dialog_SetName.PlanLabel>Choose a name for this plan:</PawnRules.Dialog_SetName.PlanLabel>
   <PawnRules.Settings.NoGame>There are no settings for this mod outside of a game.</PawnRules.Settings.NoGame>
   <PawnRules.FoodRestrictionsOverridden>&lt;Overridden&gt;</PawnRules.FoodRestrictionsOverridden>
+  <PaRu.NotAnimals>Do not use for animals</PaRu.NotAnimals>
+  <PaRu.ModVersion>Installed mod-version: {0}</PaRu.ModVersion>
 </LanguageData>

@@ -23,6 +23,7 @@ internal class Mod : Verse.Mod
     public Mod(ModContentPack contentPack) : base(contentPack)
     {
         Instance = this;
+        Settings = GetSettings<PawnRulesSettings>();
 
         currentVersion = VersionFromManifest.GetVersionFromModMetaData(contentPack.ModMetaData);
         FirstTimeUser = !ConfigDirectory.Exists;
@@ -31,6 +32,7 @@ internal class Mod : Verse.Mod
         Log("Initialized");
     }
 
+    internal PawnRulesSettings Settings { get; }
     public static Mod Instance { get; private set; }
     public static bool FirstTimeUser { get; private set; }
 
@@ -79,11 +81,14 @@ internal class Mod : Verse.Mod
             listing.Label(Lang.Get("Settings.NoGame"));
         }
 
+        listing.Gap();
+        listing.CheckboxLabeled("PaRu.NotAnimals".Translate(), ref Settings.NoAnimals);
+
         if (currentVersion != null)
         {
             listing.Gap();
             GUI.contentColor = Color.gray;
-            listing.Label("CurrentModVersion_Label".Translate(currentVersion));
+            listing.Label("PaRu.ModVersion".Translate(currentVersion));
             GUI.contentColor = Color.white;
         }
 

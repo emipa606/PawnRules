@@ -124,4 +124,6 @@
   <PawnRules.Dialog_SetName.PlanLabel>为该计划选择一个名称：</PawnRules.Dialog_SetName.PlanLabel>
   <PawnRules.Settings.NoGame>在游戏之外，该模块没有任何设置。</PawnRules.Settings.NoGame>
   <PawnRules.FoodRestrictionsOverridden>&lt;越权</PawnRules.FoodRestrictionsOverridden>
+  <PaRu.NotAnimals>请勿用于动物</PaRu.NotAnimals>
+  <PaRu.ModVersion>已安装模块版本：{0}</PaRu.ModVersion>
 </LanguageData>

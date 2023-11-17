@@ -1,5 +1,9 @@
 # Changelog for PawnRules
 
+1.4.4 - Added option to not affect animals, to be able to use mods like Animals Control for that.
+Used DeepL to update translations for ChineseSimplified, French, German
+
+
 1.4.3 - Should no longer trigger issues when converting a pawn
 
 

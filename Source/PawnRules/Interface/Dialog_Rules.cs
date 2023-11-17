@@ -40,6 +40,11 @@ internal class Dialog_Rules : WindowPlus
 
         foreach (var type in PawnType.List)
         {
+            if (Mod.Instance.Settings.NoAnimals && type == PawnType.Animal)
+            {
+                continue;
+            }
+
             _floatMenuViews.Add(new FloatMenuOption(Lang.Get("Dialog_Rules.DefaultType", type.Label),
                 () => ChangeType(type)));
         }
@@ -57,6 +62,11 @@ internal class Dialog_Rules : WindowPlus
 
         foreach (var pawnType in PawnType.List)
         {
+            if (Mod.Instance.Settings.NoAnimals && pawnType == PawnType.Animal)
+            {
+                continue;
+            }
+
             _floatMenuViews.Add(new FloatMenuOption(Lang.Get("Dialog_Rules.DefaultType", pawnType.Label),
                 () => ChangeType(pawnType)));
         }

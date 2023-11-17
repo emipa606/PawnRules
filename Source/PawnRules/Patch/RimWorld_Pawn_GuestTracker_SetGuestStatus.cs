@@ -16,8 +16,14 @@ internal static class RimWorld_Pawn_GuestTracker_SetGuestStatus
             return;
         }
 
+
         var pawn = Traverse.Create(__instance).Field<Pawn>("pawn").Value;
         var guestType = PawnType.Colonist;
+
+        if (Mod.Instance.Settings.NoAnimals && pawn.RaceProps.Animal)
+        {
+            return;
+        }
 
         switch (guestStatus)
         {

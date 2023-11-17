@@ -45,6 +45,11 @@ internal static class Extensions
             return null;
         }
 
+        if (Mod.Instance.Settings.NoAnimals && self.RaceProps.Animal)
+        {
+            return null;
+        }
+
         if (self.Faction is { IsPlayer: true })
         {
             if (self.IsColonist)

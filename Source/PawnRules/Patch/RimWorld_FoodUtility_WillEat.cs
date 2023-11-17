@@ -44,6 +44,11 @@ internal static class RimWorld_FoodUtility_WillEat
                 return;
             }
 
+            if (Mod.Instance.Settings.NoAnimals && p.RaceProps.Animal)
+            {
+                return;
+            }
+
             var restriction = p.GetRules()?.GetRestriction(RestrictionType.Food);
             if (restriction == null || restriction.IsVoid || p.InMentalState && (getter == null || getter != p))
             {

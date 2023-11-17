@@ -14,6 +14,11 @@ internal static class RimWorld_PawnColumnWorker_FoodRestriction_DoAssignFoodRest
 {
     private static bool Prefix(Rect rect, Pawn pawn)
     {
+        if (Mod.Instance.Settings.NoAnimals && pawn.RaceProps.Animal)
+        {
+            return true;
+        }
+
         var num = Mathf.FloorToInt((rect.width - 4f) * 0.714285731f);
         var num2 = Mathf.FloorToInt((rect.width - 4f) * 0.2857143f);
         var num3 = rect.x;
