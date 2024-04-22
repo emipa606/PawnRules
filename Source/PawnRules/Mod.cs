@@ -106,10 +106,5 @@ internal class Mod : Verse.Mod
         Registry.Initialize();
     }
 
-    internal class Exception : System.Exception
-    {
-        public Exception(string message) : base(PrefixMessage(message))
-        {
-        }
-    }
+    internal class Exception(string message) : System.Exception(PrefixMessage(message));
 }

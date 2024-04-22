@@ -5,6 +5,7 @@
 Update of Jaxes mod https://steamcommunity.com/sharedfiles/filedetails/?id=1499843448
 
 - Added support for Slaves
+- Added option to not use it for animals
 
 ![Image](https://i.imgur.com/pufA0kM.png)
 

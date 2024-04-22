@@ -10,7 +10,7 @@ internal static class AddonManager
     private static readonly Regex KeyRegex = new Regex("[a-zA-Z0-9_]+");
 
     private static readonly Dictionary<string, AddonOption> OptionRegistry = new Dictionary<string, AddonOption>();
-    private static readonly List<ModContentPack> ModRegistry = new List<ModContentPack>();
+    private static readonly List<ModContentPack> ModRegistry = [];
 
     public static bool AcceptingAddons { get; set; } = true;
     public static bool HasAddons { get; private set; }

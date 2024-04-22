@@ -17,7 +17,7 @@ internal static class Patcher
 
     public static void ApplyLanguageOverrides()
     {
-        OverrideLanguageKey("FoodRestriction", Lang.Get("PresetType.Rules"));
+        OverrideLanguageKey("FoodPolicy", Lang.Get("PresetType.Rules"));
     }
 
     public static void OverrideLanguageKey(string key, string value)

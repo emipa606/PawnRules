@@ -37,10 +37,10 @@ internal class Registry : WorldObject
     private Pawn _exemptedTrainer;
 
     private string _loadedVersion;
-    private List<Binding> _savedBindings = new List<Binding>();
-    private List<Binding> _savedDefaults = new List<Binding>();
+    private List<Binding> _savedBindings = [];
+    private List<Binding> _savedDefaults = [];
 
-    private List<Presetable> _savedPresets = new List<Presetable>();
+    private List<Presetable> _savedPresets = [];
     private bool _showAllowArtisan = true;
     private bool _showAllowCourting = true;
     private bool _showBondingPolicy = true;
@@ -232,12 +232,7 @@ internal class Registry : WorldObject
 
     public static Rules GetDefaultRules(PawnType type)
     {
-        if (type == null)
-        {
-            return null;
-        }
-
-        return _instance._defaults.TryGetValue(type, out var resultValue) ? resultValue : null;
+        return type == null ? null : _instance._defaults.GetValueOrDefault(type);
     }
 
     public static void SetDefaultRules(Rules rules)
@@ -258,12 +253,7 @@ internal class Registry : WorldObject
 
     public static Rules GetRules(Pawn pawn)
     {
-        if (!pawn.CanHaveRules())
-        {
-            return null;
-        }
-
-        return _instance._rules.TryGetValue(pawn, out var rule) ? rule : null;
+        return !pawn.CanHaveRules() ? null : _instance._rules.GetValueOrDefault(pawn);
     }
 
     public static Rules GetOrNewRules(Pawn pawn)
@@ -284,23 +274,21 @@ internal class Registry : WorldObject
         return rules;
     }
 
-    public static Rules GetOrDefaultRules(Pawn pawn)
+    public static void GetOrDefaultRules(Pawn pawn)
     {
         if (!pawn.CanHaveRules())
         {
-            return null;
+            return;
         }
 
-        if (_instance._rules.TryGetValue(pawn, out var orDefaultRules))
+        if (_instance._rules.TryGetValue(pawn, out _))
         {
-            return orDefaultRules;
+            return;
         }
 
         var defaultRules = GetDefaultRules(pawn.GetTargetType());
         var rules = defaultRules.IsVoid ? defaultRules.CloneRulesFor(pawn) : defaultRules;
         _instance._rules.Add(pawn, rules);
-
-        return rules;
     }
 
     public static void ReplaceRules(Pawn pawn, Rules rules)
@@ -329,16 +317,17 @@ internal class Registry : WorldObject
         _instance._rules[pawn] = defaultRules.IsVoid ? defaultRules.CloneRulesFor(pawn) : defaultRules;
     }
 
-    public static Rules CloneRules(Pawn original, Pawn cloner)
+    public static void CloneRules(Pawn original, Pawn cloner)
     {
         if (!original.CanHaveRules())
         {
-            return null;
+            return;
         }
 
         if (!_instance._rules.ContainsKey(original))
         {
-            return GetOrDefaultRules(cloner);
+            GetOrDefaultRules(cloner);
+            return;
         }
 
         if (_instance._rules.ContainsKey(cloner))
@@ -348,8 +337,6 @@ internal class Registry : WorldObject
 
         var cloned = _instance._rules[original].CloneRulesFor(cloner);
         _instance._rules.Add(cloner, cloned);
-
-        return cloned;
     }
 
     public static void DeleteRules(Pawn pawn)

@@ -8,7 +8,7 @@ using Verse;
 
 namespace PawnRules.Patch;
 
-[HarmonyPatch(typeof(Pawn), "GetGizmos")]
+[HarmonyPatch(typeof(Pawn), nameof(Pawn.GetGizmos))]
 internal static class Verse_Pawn_GetGizmos
 {
     private static void Postfix(Pawn __instance, ref IEnumerable<Gizmo> __result)

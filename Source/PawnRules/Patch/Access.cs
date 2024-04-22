@@ -28,14 +28,14 @@ internal static class Access
     public static int Method_RimWorld_FoodUtility_GetMaxRegionsToScan_Call(Pawn getter, bool forceScanWholeMap)
     {
         return (int)MethodRimWorldFoodUtilityGetMaxRegionsToScan.Invoke(null,
-            new object[] { getter, forceScanWholeMap });
+            [getter, forceScanWholeMap]);
     }
 
     public static bool Method_RimWorld_FoodUtility_IsFoodSourceOnMapSociallyProper_Call(Thing thing, Pawn getter,
         Pawn eater, bool allowSociallyImproper)
     {
         return (bool)MethodRimWorldFoodUtilityIsFoodSourceOnMapSociallyProper.Invoke(null,
-            new object[] { thing, getter, eater, allowSociallyImproper });
+            [thing, getter, eater, allowSociallyImproper]);
     }
 
     public static Thing Method_RimWorld_FoodUtility_SpawnedFoodSearchInnerScan_Call(Pawn eater, IntVec3 root,
@@ -43,7 +43,7 @@ internal static class Access
         Predicate<Thing> validator = null)
     {
         return (Thing)MethodRimWorldFoodUtilitySpawnedFoodSearchInnerScan.Invoke(null,
-            new object[] { eater, root, searchSet, peMode, traverseParams, maxDistance, validator });
+            [eater, root, searchSet, peMode, traverseParams, maxDistance, validator]);
     }
 
     public static HashSet<Thing> Field_RimWorld_FoodUtility_Filtered_Get()

@@ -12,7 +12,7 @@ internal class Dialog_Rules : WindowPlus
     private const float OptionButtonSize = 80f;
     private readonly Listing_StandardPlus _addons = new Listing_StandardPlus();
 
-    private readonly List<FloatMenuOption> _floatMenuViews = new List<FloatMenuOption>();
+    private readonly List<FloatMenuOption> _floatMenuViews = [];
 
     private readonly Pawn _pawn;
 
@@ -30,7 +30,7 @@ internal class Dialog_Rules : WindowPlus
         _personalized = rules.CloneRulesFor(_pawn);
         _template = rules.IsPreset ? rules.ClonePreset() : _personalized;
 
-        _preset = new Listing_Preset<Rules>(rules.Type, rules.IsPreset ? rules : _personalized, new[] { _personalized },
+        _preset = new Listing_Preset<Rules>(rules.Type, rules.IsPreset ? rules : _personalized, [_personalized],
             UpdateSelected, CommitTemplate, RevertTemplate);
 
         if (_pawn != null)
@@ -57,7 +57,7 @@ internal class Dialog_Rules : WindowPlus
         var defaultRules = Registry.GetDefaultRules(type);
         _type = type;
         _template = defaultRules.ClonePreset();
-        _preset = new Listing_Preset<Rules>(type, defaultRules, new[] { Registry.GetVoidPreset<Rules>(type) },
+        _preset = new Listing_Preset<Rules>(type, defaultRules, [Registry.GetVoidPreset<Rules>(type)],
             UpdateSelected, CommitTemplate, RevertTemplate);
 
         foreach (var pawnType in PawnType.List)
@@ -89,7 +89,7 @@ internal class Dialog_Rules : WindowPlus
         _preset.Type = type ?? _pawn.GetTargetType();
         _type = type;
         _preset.FixedPresets =
-            _type == null ? new[] { _personalized } : new[] { Registry.GetVoidPreset<Rules>(_template.Type) };
+            _type == null ? [_personalized] : [Registry.GetVoidPreset<Rules>(_template.Type)];
         if (type == null)
         {
             var rules = Registry.GetOrNewRules(_pawn);
@@ -138,15 +138,15 @@ internal class Dialog_Rules : WindowPlus
     {
         if (_preset.Selected == _personalized)
         {
+            Presetable.SetName<Rules>(_preset.Type, OnCommit);
+            return;
+
             void OnCommit(Rules rules)
             {
                 rules.CopyRules(_personalized);
                 _preset.Selected = rules;
                 UpdateSelected();
             }
-
-            Presetable.SetName<Rules>(_preset.Type, OnCommit);
-            return;
         }
 
         _preset.Selected.CopyRules(_template);
@@ -158,7 +158,7 @@ internal class Dialog_Rules : WindowPlus
         if (_preset.Selected.IsVoid && _type == null)
         {
             _personalized = _preset.Selected.CloneRulesFor(_pawn);
-            _preset.FixedPresets = new[] { _personalized };
+            _preset.FixedPresets = [_personalized];
             _preset.Selected = _personalized;
             Registry.ReplaceRules(_pawn, _preset.Selected);
         }
@@ -250,6 +250,14 @@ internal class Dialog_Rules : WindowPlus
     {
         var pawns = GetOtherPawnsOfType(byKind).ToArray();
 
+        var count = pawns.Length;
+        Dialog_Alert.Open(
+            Lang.Get("Dialog_Rules.AssignAllConfirm", GetPresetNameDefinite(), count.ToString().Bold(),
+                byKind ? _pawn.kindDef.GetLabelPlural(count) :
+                count > 1 ? _preset.Selected.Type.LabelPlural : _preset.Selected.Type.Label),
+            Dialog_Alert.Buttons.YesNo, OnAccept);
+        return;
+
         void OnAccept()
         {
             foreach (var pawn in pawns)
@@ -257,25 +265,19 @@ internal class Dialog_Rules : WindowPlus
                 Registry.ReplaceRules(pawn, _preset.Selected.IsPreset ? _preset.Selected : _template.ClonePreset());
             }
         }
-
-        var count = pawns.Length;
-        Dialog_Alert.Open(
-            Lang.Get("Dialog_Rules.AssignAllConfirm", GetPresetNameDefinite(), count.ToString().Bold(),
-                byKind ? _pawn.kindDef.GetLabelPlural(count) :
-                count > 1 ? _preset.Selected.Type.LabelPlural : _preset.Selected.Type.Label),
-            Dialog_Alert.Buttons.YesNo, OnAccept);
     }
 
     private void AssignSpecific(Pawn pawn)
     {
+        Dialog_Alert.Open(
+            Lang.Get("Dialog_Rules.AssignSpecificConfirm", GetPresetNameDefinite(), pawn.Name.ToString().Italic()),
+            Dialog_Alert.Buttons.YesNo, OnAccept);
+        return;
+
         void OnAccept()
         {
             Registry.ReplaceRules(pawn, _preset.Selected.IsPreset ? _preset.Selected : _template.ClonePreset());
         }
-
-        Dialog_Alert.Open(
-            Lang.Get("Dialog_Rules.AssignSpecificConfirm", GetPresetNameDefinite(), pawn.Name.ToString().Italic()),
-            Dialog_Alert.Buttons.YesNo, OnAccept);
     }
 
     private static string GetRestrictionDisplayName(Presetable restriction)
@@ -287,6 +289,9 @@ internal class Dialog_Rules : WindowPlus
     {
         if (_preset.EditMode)
         {
+            Dialog_Alert.Open(Lang.Get("Button.PresetSaveConfirm"), Dialog_Alert.Buttons.YesNo, OnAccept, OnCancel);
+            return;
+
             void OnAccept()
             {
                 CommitTemplate();
@@ -298,9 +303,6 @@ internal class Dialog_Rules : WindowPlus
                 _preset.Revert();
                 base.Close(doCloseSound);
             }
-
-            Dialog_Alert.Open(Lang.Get("Button.PresetSaveConfirm"), Dialog_Alert.Buttons.YesNo, OnAccept, OnCancel);
-            return;
         }
 
         if (_preset.Selected == _personalized)

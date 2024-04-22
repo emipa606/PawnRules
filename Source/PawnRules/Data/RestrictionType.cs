@@ -11,10 +11,10 @@ internal class RestrictionType : IPresetableType
         Lang.Get("RestrictionType.BondingPlural"), Lang.Get("RestrictionType.BondingCategorization"));
 
     public static readonly RestrictionType[] List =
-    {
+    [
         Food,
         Bonding
-    };
+    ];
 
     private RestrictionType(string id, string label, string labelPlural, string categorization)
     {

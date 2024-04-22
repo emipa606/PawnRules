@@ -14,7 +14,7 @@ internal static class ScribePlus
 
         Scribe_Collections.Look(ref list, key, LookMode.Deep);
 
-        return list ?? new List<T>();
+        return list ?? [];
     }
 
     public static T LookReference<T>(T reference, string key, T defaultValue = null) where T : class, ILoadReferenceable

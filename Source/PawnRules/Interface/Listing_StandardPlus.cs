@@ -97,14 +97,12 @@ internal class Listing_StandardPlus : Listing_Standard
         return result;
     }
 
-    public bool CheckboxPartial(string label, ref MultiCheckboxState state, string tooltip = null, bool enabled = true,
+    public void CheckboxPartial(string label, ref MultiCheckboxState state, string tooltip = null, bool enabled = true,
         bool allowPartialInCycle = false)
     {
-        var result = GuiPlus.CheckboxPartial(GetRect(Text.LineHeight), label, ref state, tooltip, enabled,
+        GuiPlus.CheckboxPartial(GetRect(Text.LineHeight), label, ref state, tooltip, enabled,
             allowPartialInCycle);
         Gap(verticalSpacing);
-
-        return result;
     }
 
     public string TextEntryLabeled(string label, string text, string tooltip = null, int lineCount = 1)

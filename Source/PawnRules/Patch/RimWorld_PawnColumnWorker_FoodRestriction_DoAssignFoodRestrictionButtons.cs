@@ -29,11 +29,6 @@ internal static class RimWorld_PawnColumnWorker_FoodRestriction_DoAssignFoodRest
         var label = rules.GetDisplayName();
         var buttonLabel = label.Truncate(rect2.width);
 
-        Rules GetPayload(Pawn p)
-        {
-            return rules;
-        }
-
         Widgets.Dropdown(rect2, pawn, GetPayload, GenerateMenu, buttonLabel, null, label, null, null, true);
 
         num3 += num;
@@ -47,6 +42,11 @@ internal static class RimWorld_PawnColumnWorker_FoodRestriction_DoAssignFoodRest
         }
 
         return false;
+
+        Rules GetPayload(Pawn p)
+        {
+            return rules;
+        }
     }
 
     private static IEnumerable<Widgets.DropdownMenuElement<Rules>> GenerateMenu(Pawn pawn)

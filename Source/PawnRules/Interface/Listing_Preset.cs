@@ -6,33 +6,29 @@ using UnityEngine;
 
 namespace PawnRules.Interface;
 
-internal class Listing_Preset<T> where T : Presetable
+internal class Listing_Preset<T>(
+    IPresetableType type,
+    T selected,
+    T[] fixedPresets,
+    Action onSelect,
+    Action onSave,
+    Action onRevert)
+    where T : Presetable
 {
     private readonly Listing_StandardPlus _listing = new Listing_StandardPlus();
     private readonly Listing_StandardPlus _presetListing = new Listing_StandardPlus();
 
     private T _lastSelected;
 
-    public Listing_Preset(IPresetableType type, T selected, T[] fixedPresets, Action onSelect, Action onSave,
-        Action onRevert)
-    {
-        Type = type;
-        Selected = selected;
-        FixedPresets = fixedPresets;
-        OnSelect = onSelect;
-        OnSave = onSave;
-        OnRevert = onRevert;
-    }
+    public IPresetableType Type { get; set; } = type;
 
-    public IPresetableType Type { get; set; }
-
-    public Action OnSelect { get; }
-    public Action OnSave { get; }
-    public Action OnRevert { get; }
+    public Action OnSelect { get; } = onSelect;
+    public Action OnSave { get; } = onSave;
+    public Action OnRevert { get; } = onRevert;
 
     public bool EditMode { get; set; }
-    public T Selected { get; set; }
-    public T[] FixedPresets { get; set; }
+    public T Selected { get; set; } = selected;
+    public T[] FixedPresets { get; set; } = fixedPresets;
     public bool IsUnsaved => _lastSelected != null;
 
     private void ChangeEditMode(bool value)

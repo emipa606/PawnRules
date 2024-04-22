@@ -3,7 +3,7 @@ using Verse;
 
 namespace PawnRules.Patch;
 
-[HarmonyPatch(typeof(Root), "Start")]
+[HarmonyPatch(typeof(Root), nameof(Root.Start))]
 internal static class Verse_Root_Start
 {
     private static void Postfix()

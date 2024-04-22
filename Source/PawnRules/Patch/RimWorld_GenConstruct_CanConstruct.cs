@@ -6,7 +6,9 @@ using Verse.AI;
 
 namespace PawnRules.Patch;
 
-[HarmonyPatch(typeof(GenConstruct), "CanConstruct", typeof(Thing), typeof(Pawn), typeof(bool), typeof(bool))]
+[HarmonyPatch(typeof(GenConstruct), nameof(GenConstruct.CanConstruct), typeof(Thing), typeof(Pawn), typeof(bool),
+    typeof(bool),
+    typeof(JobDef))]
 internal static class RimWorld_GenConstruct_CanConstruct
 {
     private static void Postfix(ref bool __result, Thing t, Pawn p, bool checkSkills = true, bool forced = false)

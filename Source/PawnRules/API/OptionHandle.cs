@@ -104,7 +104,7 @@ public class OptionHandle<T> : OptionHandle
     /// </summary>
     /// <param name="pawn">The pawn whose rule option is being changed.</param>
     /// <param name="oldValue">The original value of the option.</param>
-    /// <param name="inputValue">The new value of the option entered in the rules dialog.</param>
+    /// <param name="inputValue">The new value of the option entered the rules' dialog.</param>
     /// <returns>The return value will be the value set for the option.</returns>
     public delegate T OnChangeForPawnHandler(Pawn pawn, T oldValue, T inputValue);
 
@@ -113,7 +113,7 @@ public class OptionHandle<T> : OptionHandle
     /// </summary>
     /// <param name="target">The target of the preset that is being changed.</param>
     /// <param name="oldValue">The original value of the option.</param>
-    /// <param name="inputValue">The new value of the option entered in the rules dialog.</param>
+    /// <param name="inputValue">The new value of the option entered the rules' dialog.</param>
     /// <returns>The return value will be the value set for the option.</returns>
     public delegate T OnChangeForPresetHandler(OptionTarget target, T oldValue, T inputValue);
 
@@ -122,7 +122,7 @@ public class OptionHandle<T> : OptionHandle
     }
 
     /// <summary>
-    ///     This is called when the value of the option is changing for a pawn. Unused if option option implements a button.
+    ///     This is called when the value of the option is changing for a pawn. Unused if option implements a button.
     /// </summary>
     public OnChangeForPawnHandler OnChangeForPawnForPawn { get; set; }
 

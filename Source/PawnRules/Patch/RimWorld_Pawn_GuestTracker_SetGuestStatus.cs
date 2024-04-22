@@ -5,11 +5,10 @@ using Verse;
 
 namespace PawnRules.Patch;
 
-[HarmonyPatch(typeof(Pawn_GuestTracker), "SetGuestStatus")]
+[HarmonyPatch(typeof(Pawn_GuestTracker), nameof(Pawn_GuestTracker.SetGuestStatus))]
 internal static class RimWorld_Pawn_GuestTracker_SetGuestStatus
 {
-    private static void Prefix(Pawn_GuestTracker __instance, Faction newHost,
-        GuestStatus guestStatus = GuestStatus.Guest)
+    private static void Prefix(Faction newHost, Pawn ___pawn, GuestStatus guestStatus = GuestStatus.Guest)
     {
         if (!Registry.IsActive)
         {
@@ -17,10 +16,9 @@ internal static class RimWorld_Pawn_GuestTracker_SetGuestStatus
         }
 
 
-        var pawn = Traverse.Create(__instance).Field<Pawn>("pawn").Value;
         var guestType = PawnType.Colonist;
 
-        if (Mod.Instance.Settings.NoAnimals && pawn.RaceProps.Animal)
+        if (Mod.Instance.Settings.NoAnimals && ___pawn.RaceProps.Animal)
         {
             return;
         }
@@ -38,11 +36,11 @@ internal static class RimWorld_Pawn_GuestTracker_SetGuestStatus
                 break;
         }
 
-        if (pawn != null && pawn.def.race?.Animal == true)
+        if (___pawn != null && ___pawn.def.race?.Animal == true)
         {
             guestType = PawnType.Animal;
         }
 
-        Registry.FactionUpdate(pawn, newHost, guestType);
+        Registry.FactionUpdate(___pawn, newHost, guestType);
     }
 }

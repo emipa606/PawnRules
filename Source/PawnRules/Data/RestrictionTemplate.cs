@@ -51,7 +51,7 @@ internal class RestrictionTemplate
     private static RestrictionTemplate GetFoodsCategorized(Restriction restriction)
     {
         var list = new Dictionary<string, Category>
-            { [ThingCategoryDefOf.FoodMeals.LabelCap] = new Category(ThingCategoryDefOf.FoodMeals.LabelCap) };
+            { [ThingCategoryDefOf.Foods.LabelCap] = new Category(ThingCategoryDefOf.Foods.LabelCap) };
 
         foreach (var food in FoodCache)
         {
@@ -140,15 +140,10 @@ internal class RestrictionTemplate
         return type == RestrictionType.Bonding ? GetAnimalsCategorized(restriction) : null;
     }
 
-    public class Category
+    public class Category(string label)
     {
-        public Category(string label)
-        {
-            Label = label;
-        }
-
-        public string Label { get; }
-        public List<Toggle> Members { get; } = new List<Toggle>();
+        public string Label { get; } = label;
+        public List<Toggle> Members { get; } = [];
 
         public MultiCheckboxState GetListState()
         {
@@ -184,16 +179,10 @@ internal class RestrictionTemplate
         }
     }
 
-    public class Toggle
+    public class Toggle(Def def, bool value)
     {
-        public bool Value;
+        public bool Value = value;
 
-        public Toggle(Def def, bool value)
-        {
-            Def = def;
-            Value = value;
-        }
-
-        public Def Def { get; }
+        public Def Def { get; } = def;
     }
 }

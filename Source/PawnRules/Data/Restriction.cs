@@ -8,7 +8,7 @@ namespace PawnRules.Data;
 
 internal class Restriction : Presetable
 {
-    private List<string> _defs = new List<string>();
+    private List<string> _defs = [];
 
     public Restriction()
     {

@@ -21,13 +21,13 @@ internal class PawnType : IPresetableType
         Lang.Get("PawnType.SlavePlural"), OptionTarget.Slave);
 
     public static readonly PawnType[] List =
-    {
+    [
         Colonist,
         Animal,
         Guest,
         Prisoner,
         Slave
-    };
+    ];
 
     private PawnType(string id, string label, string labelPlural, OptionTarget target = default)
     {

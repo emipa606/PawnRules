@@ -61,27 +61,29 @@ internal abstract class Presetable : IExposable, ILoadReferenceable
     {
         var localType = type;
 
+        Dialog_SetName.Open(Lang.Get("Dialog_SetName.PresetTitleNew"), Lang.Get("Dialog_SetName.PresetLabel"), OnCommit,
+            name => NameIsValid<T>(type, name));
+        return;
+
         void OnCommit(string name)
         {
             var preset = Registry.CreatePreset<T>(localType, name);
             onCreate(preset);
         }
-
-        Dialog_SetName.Open(Lang.Get("Dialog_SetName.PresetTitleNew"), Lang.Get("Dialog_SetName.PresetLabel"), OnCommit,
-            name => NameIsValid<T>(type, name));
     }
 
     public static void SetName<T>(T preset, Action<T> onRename) where T : Presetable
     {
         var localPreset = preset;
 
+        Dialog_SetName.Open(Lang.Get("Dialog_SetName.PresetTitle", preset.Name.Bold()),
+            Lang.Get("Dialog_SetName.PresetLabel"), OnCommit, name => NameIsValid<T>(preset.Type, name), preset.Name);
+        return;
+
         void OnCommit(string name)
         {
             onRename(Registry.RenamePreset(localPreset, name));
         }
-
-        Dialog_SetName.Open(Lang.Get("Dialog_SetName.PresetTitle", preset.Name.Bold()),
-            Lang.Get("Dialog_SetName.PresetLabel"), OnCommit, name => NameIsValid<T>(preset.Type, name), preset.Name);
     }
 
     public static bool NameIsValid<T>(IPresetableType type, string name)

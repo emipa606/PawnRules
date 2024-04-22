@@ -7,7 +7,7 @@ using Verse;
 
 namespace PawnRules.Patch;
 
-[HarmonyPatch(typeof(PawnColumnWorker_FoodRestriction), "DoHeader")]
+[HarmonyPatch(typeof(PawnColumnWorker_FoodRestriction), nameof(PawnColumnWorker_FoodRestriction.DoHeader))]
 internal static class RimWorld_PawnColumnWorker_FoodRestriction_DoHeader
 {
     private static readonly PawnColumnDef RulesColumnDef = new PawnColumnDef

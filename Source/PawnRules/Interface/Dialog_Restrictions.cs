@@ -26,7 +26,7 @@ internal class Dialog_Restrictions : WindowPlus
         _type = type;
 
         _presetList = new Listing_Preset<Restriction>(_type, _rules.GetRestriction(_type),
-            new[] { Registry.GetVoidPreset<Restriction>(_type) }, RefreshTemplate, SaveTemplate, null);
+            [Registry.GetVoidPreset<Restriction>(_type)], RefreshTemplate, SaveTemplate, null);
         RefreshTemplate();
     }
 
@@ -57,6 +57,9 @@ internal class Dialog_Restrictions : WindowPlus
     {
         if (_presetList.EditMode && (_presetList.IsUnsaved || HasMadeChanges()))
         {
+            Dialog_Alert.Open(Lang.Get("Button.PresetSaveConfirm"), Dialog_Alert.Buttons.YesNo, OnAccept, OnCancel);
+            return;
+
             void OnAccept()
             {
                 _presetList.Selected.Update(_template);
@@ -74,9 +77,6 @@ internal class Dialog_Restrictions : WindowPlus
 
                 base.Close(doCloseSound);
             }
-
-            Dialog_Alert.Open(Lang.Get("Button.PresetSaveConfirm"), Dialog_Alert.Buttons.YesNo, OnAccept, OnCancel);
-            return;
         }
 
         base.Close(doCloseSound);

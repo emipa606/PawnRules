@@ -3,7 +3,7 @@ using Verse;
 
 namespace PawnRules.Patch;
 
-[HarmonyPatch(typeof(Game), "FinalizeInit")]
+[HarmonyPatch(typeof(Game), nameof(Game.FinalizeInit))]
 internal static class Verse_Game_FinalizeInit
 {
     private static void Postfix()
