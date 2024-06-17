@@ -22,8 +22,10 @@ internal static class Patcher
 
     public static void OverrideLanguageKey(string key, string value)
     {
-        var original = LanguageDatabase.activeLanguage.keyedReplacements[key];
-        LanguageDatabase.activeLanguage.keyedReplacements.Remove(key);
+        if (!LanguageDatabase.activeLanguage.keyedReplacements.Remove(key, out var original))
+        {
+            return;
+        }
 
         original.value = value;
         LanguageDatabase.activeLanguage.keyedReplacements.Add(key, original);

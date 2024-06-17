@@ -1,5 +1,8 @@
 # Changelog for PawnRules
 
+1.5.1 - Fixed exception with languages that are not fully translated
+
+
 1.5.0 - Updated for 1.5
 
 

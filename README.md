@@ -1,4 +1,4 @@
-# PawnRules
+# [Pawn Rules (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=3024243615)
 
 ![Image](https://i.imgur.com/buuPQel.png)
 
@@ -8,7 +8,6 @@ Update of Jaxes mod https://steamcommunity.com/sharedfiles/filedetails/?id=14998
 - Added option to not use it for animals
 
 ![Image](https://i.imgur.com/pufA0kM.png)
-
 	
 ![Image](https://i.imgur.com/Z4GOv8H.png)
 
@@ -33,7 +32,7 @@ Any of these rules can be disabled and hidden from the rules window. Rules prese
 
 # How to open rules dialog
 
-Select a pawn and the rules button should appear next to the draft button. If you are using https://steamcommunity.com/sharedfiles/filedetails/?id=1508850027]RimHUD then the rules button is integrated in the HUD and replaces the food restriction button.
+Select a pawn and the rules button should appear next to the draft button. If you are using [RimHUD](https://steamcommunity.com/sharedfiles/filedetails/?id=1508850027) then the rules button is integrated in the HUD and replaces the food restriction button.
 
 # Technical details
 
@@ -41,7 +40,7 @@ No update should ever break an existing game and **this mod be added or removed 
 
 # Compatibility
 
-This mod is not compatible with my other mod https://steamcommunity.com/sharedfiles/filedetails/?id=1547017052]Animal Food Restrictions as this mod has a much more robust restriction system.
+This mod is not compatible with my other mod [Animal Food Restrictions](https://steamcommunity.com/sharedfiles/filedetails/?id=1547017052) as this mod has a much more robust restriction system.
 
 # Other languages
 
@@ -49,12 +48,12 @@ This mod is not compatible with my other mod https://steamcommunity.com/sharedfi
 
 # Older versions
 
-https://github.com/Jaxe-Dev/PawnRules/releases/tag/v1.4.3]1.0 version available here
-https://github.com/Jaxe-Dev/PawnRules/releases/tag/v1.1.6]B19 version available here
+[1.0 version available here](https://github.com/Jaxe-Dev/PawnRules/releases/tag/v1.4.3)
+[B19 version available here](https://github.com/Jaxe-Dev/PawnRules/releases/tag/v1.1.6)
 
 # For Modders
 
-Pawn Rules supports addons created by other modders by allowing easy creation of new rule options while handling the GUI and world storage saving. https://github.com/Jaxe-Dev/PawnRules/wiki/addons]Check out the wiki on addons.
+Pawn Rules supports addons created by other modders by allowing easy creation of new rule options while handling the GUI and world storage saving. [Check out the wiki on addons.](https://github.com/Jaxe-Dev/PawnRules/wiki/addons)
 
 ![Image](https://i.imgur.com/PwoNOj4.png)
 
@@ -62,13 +61,12 @@ Pawn Rules supports addons created by other modders by allowing easy creation of
 
 -  See if the the error persists if you just have this mod and its requirements active.
 -  If not, try adding your other mods until it happens again.
--  Post your error-log using https://steamcommunity.com/workshop/filedetails/?id=818773962]HugsLib or the standalone https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404]Uploader and command Ctrl+F12
+-  Post your error-log using [HugsLib](https://steamcommunity.com/workshop/filedetails/?id=818773962) or the standalone [Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) and command Ctrl+F12
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
--  Use https://github.com/RimSort/RimSort/releases/latest]RimSort to sort your mods
+-  Use [RimSort](https://github.com/RimSort/RimSort/releases/latest) to sort your mods
 
 
 
-https://steamcommunity.com/sharedfiles/filedetails/changelog/3024243615]![Image](https://img.shields.io/github/v/release/emipa606/PawnRules?label=latest%20version&style=plastic&color=9f1111&labelColor=black)
-
+[![Image](https://img.shields.io/github/v/release/emipa606/PawnRules?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/3024243615)
