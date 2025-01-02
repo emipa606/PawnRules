@@ -1,5 +1,8 @@
 # Changelog for PawnRules
 
+1.5.2 - Added search-widget to the restriction list
+
+
 1.5.1 - Fixed exception with languages that are not fully translated
 
 

@@ -141,7 +141,7 @@ internal class Registry : WorldObject
     {
         if (!_instance._presets.ContainsKey(typeof(T)) || !_instance._presets[typeof(T)].ContainsKey(type))
         {
-            return new T[] { };
+            return [];
         }
 
         return _instance._presets[typeof(T)][type].Values.Cast<T>().OrderBy(preset => preset.Name).ToArray();

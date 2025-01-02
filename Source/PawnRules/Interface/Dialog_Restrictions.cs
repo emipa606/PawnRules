@@ -19,6 +19,7 @@ internal class Dialog_Restrictions : WindowPlus
 
     private Color _color;
     private RestrictionTemplate _template;
+    private string search;
 
     private Dialog_Restrictions(RestrictionType type, Rules rules)
     {
@@ -196,12 +197,22 @@ internal class Dialog_Restrictions : WindowPlus
     {
         _membersList.Begin(membersRect, true);
 
+        var searchRect = _membersList.GetRect(27f);
+        search = Widgets.TextField(searchRect.LeftPart(0.9f), search);
+        Widgets.DrawTextureFitted(searchRect.RightPart(0.1f), TexButton.Search, 1f);
+
         foreach (var category in categories.Where(category => category.Value.Length > 0))
         {
             _membersList.LabelTiny(category.Key.Bold());
 
             foreach (var member in category.Value)
             {
+                if (!string.IsNullOrEmpty(search) &&
+                    !member.Def.label.ToLower().Contains(search.ToLower()))
+                {
+                    continue;
+                }
+
                 if (_presetList.EditMode)
                 {
                     _membersList.CheckboxLabeled(member.Def.LabelCap, ref member.Value, member.Def.description);
