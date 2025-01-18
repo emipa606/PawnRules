@@ -33,7 +33,7 @@ internal static class Persistent
 
     public static IEnumerable<string> GetPlans()
     {
-        return ExportsDirectory.GetFiles(ExportPrefix + "*" + ExportsExtension)
+        return ExportsDirectory.GetFiles($"{ExportPrefix}*{ExportsExtension}")
             .OrderByDescending(file => file.LastAccessTime).Select(GetPlanName);
     }
 
@@ -86,6 +86,6 @@ internal static class Persistent
 
     public static string CreateDefaultName()
     {
-        return Faction.OfPlayer.Name + "_" + DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss");
+        return $"{Faction.OfPlayer.Name}_{DateTime.Now:yyyy-MM-dd-hh-mm-ss}";
     }
 }

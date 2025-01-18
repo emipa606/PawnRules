@@ -1,5 +1,8 @@
 # Changelog for PawnRules
 
+1.5.3 - Fixed the dropdown-options for slaves in the assignments tab
+
+
 1.5.2 - Added search-widget to the restriction list
 
 

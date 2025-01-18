@@ -10,12 +10,12 @@ internal static class Extensions
 {
     public static string Italic(this string self)
     {
-        return "<i>" + self + "</i>";
+        return $"<i>{self}</i>";
     }
 
     public static string Bold(this string self)
     {
-        return "<b>" + self + "</b>";
+        return $"<b>{self}</b>";
     }
 
     public static int LastIndex(this IList self)
@@ -52,6 +52,11 @@ internal static class Extensions
 
         if (self.Faction is { IsPlayer: true })
         {
+            if (self.IsSlaveOfColony)
+            {
+                return PawnType.Slave;
+            }
+
             if (self.IsColonist)
             {
                 return PawnType.Colonist;

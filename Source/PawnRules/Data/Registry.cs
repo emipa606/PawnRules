@@ -15,7 +15,7 @@ namespace PawnRules.Data;
 internal class Registry : WorldObject
 {
     private const string WorldObjectDefName = "PawnRules_Registry";
-    private const string CurrentVersion = "v" + Mod.Version;
+    private const string CurrentVersion = $"v{Mod.Version}";
 
     private static Registry _instance;
 
