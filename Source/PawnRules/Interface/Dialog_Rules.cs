@@ -359,7 +359,7 @@ internal class Dialog_Rules : WindowPlus
             ChangeRestriction(RestrictionType.Food);
         }
 
-        if (_template.Type == PawnType.Colonist)
+        if (_template.Type == PawnType.Colonist || _template.Type == PawnType.Slave)
         {
             if (Registry.ShowBondingPolicy &&
                 listing.ButtonText(

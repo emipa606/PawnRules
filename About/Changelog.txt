@@ -1,5 +1,8 @@
 # Changelog for PawnRules
 
+1.5.4 - Slaves should now have the same rule options as colonists
+
+
 1.5.3 - Fixed the dropdown-options for slaves in the assignments tab
 
 
