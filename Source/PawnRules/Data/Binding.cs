@@ -11,7 +11,7 @@ internal class Binding : IExposable
     public Rules Rules;
     public PawnType Target;
 
-    public Binding()
+    private Binding()
     {
     }
 

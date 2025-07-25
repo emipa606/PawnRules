@@ -20,15 +20,13 @@ internal class Registry : WorldObject
     private static Registry _instance;
 
     private static bool _isDeactivating;
-    private readonly Dictionary<PawnType, Rules> _defaults = new Dictionary<PawnType, Rules>();
+    private readonly Dictionary<PawnType, Rules> _defaults = new();
 
-    private readonly Dictionary<Type, Dictionary<IPresetableType, Dictionary<string, Presetable>>> _presets =
-        new Dictionary<Type, Dictionary<IPresetableType, Dictionary<string, Presetable>>>();
+    private readonly Dictionary<Type, Dictionary<IPresetableType, Dictionary<string, Presetable>>> _presets = new();
 
-    private readonly Dictionary<Pawn, Rules> _rules = new Dictionary<Pawn, Rules>();
+    private readonly Dictionary<Pawn, Rules> _rules = new();
 
-    private readonly Dictionary<Type, Dictionary<IPresetableType, Presetable>> _voidPresets =
-        new Dictionary<Type, Dictionary<IPresetableType, Presetable>>();
+    private readonly Dictionary<Type, Dictionary<IPresetableType, Presetable>> _voidPresets = new();
 
     private bool _allowDrugsRestriction;
     private bool _allowEmergencyFood;
@@ -341,12 +339,10 @@ internal class Registry : WorldObject
 
     public static void DeleteRules(Pawn pawn)
     {
-        if (pawn == null || !_instance._rules.ContainsKey(pawn))
+        if (pawn != null)
         {
-            return;
+            _instance._rules.Remove(pawn);
         }
-
-        _instance._rules.Remove(pawn);
     }
 
     public static void FactionUpdate(Thing thing, Faction newFaction = null, PawnType pawnType = null)

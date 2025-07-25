@@ -53,7 +53,7 @@ internal static class RimWorld_PawnColumnWorker_FoodRestriction_DoAssignFoodRest
     {
         var menu = new List<Widgets.DropdownMenuElement<Rules>>
         {
-            new Widgets.DropdownMenuElement<Rules>
+            new()
             {
                 option = new FloatMenuOption(Lang.Get("Preset.Personalized").Italic(), () =>
                 {

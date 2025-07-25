@@ -10,7 +10,7 @@ namespace PawnRules.Interface;
 internal class Dialog_Rules : WindowPlus
 {
     private const float OptionButtonSize = 80f;
-    private readonly Listing_StandardPlus _addons = new Listing_StandardPlus();
+    private readonly Listing_StandardPlus _addons = new();
 
     private readonly List<FloatMenuOption> _floatMenuViews = [];
 

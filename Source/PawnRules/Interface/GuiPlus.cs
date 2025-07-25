@@ -15,8 +15,8 @@ internal static class GuiPlus
     private const float ButtonSize = 30f;
     private const float RadioButtonSize = 24f;
 
-    private static readonly Color InactiveColor = new Color(0.37f, 0.37f, 0.37f, 0.8f);
-    public static readonly Color ReadOnlyColor = new Color(0.75f, 0.75f, 0.75f, 0.75f);
+    private static readonly Color InactiveColor = new(0.37f, 0.37f, 0.37f, 0.8f);
+    public static readonly Color ReadOnlyColor = new(0.75f, 0.75f, 0.75f, 0.75f);
 
     private static readonly Texture2D EditRulesTexture = ContentFinder<Texture2D>.Get("PawnRules/EditRules");
 
@@ -75,7 +75,7 @@ internal static class GuiPlus
         return enabled && labelClicked;
     }
 
-    public static bool CheckboxPartial(Rect rect, string label, ref MultiCheckboxState state, string tooltip = null,
+    public static void CheckboxPartial(Rect rect, string label, ref MultiCheckboxState state, string tooltip = null,
         bool enabled = true, bool allowPartialInCycle = true)
     {
         var prevAnchor = Text.Anchor;
@@ -91,26 +91,23 @@ internal static class GuiPlus
             }
         }
 
-        var result = false;
         if (enabled && Widgets.ButtonInvisible(rect))
         {
-            if (state == MultiCheckboxState.Off)
+            switch (state)
             {
-                state = allowPartialInCycle ? MultiCheckboxState.Partial : MultiCheckboxState.On;
-                SoundDefOf.Checkbox_TurnedOff.PlayOneShotOnCamera();
+                case MultiCheckboxState.Off:
+                    state = allowPartialInCycle ? MultiCheckboxState.Partial : MultiCheckboxState.On;
+                    SoundDefOf.Checkbox_TurnedOff.PlayOneShotOnCamera();
+                    break;
+                case MultiCheckboxState.Partial:
+                    state = MultiCheckboxState.On;
+                    SoundDefOf.Checkbox_TurnedOn.PlayOneShotOnCamera();
+                    break;
+                default:
+                    state = MultiCheckboxState.Off;
+                    SoundDefOf.Checkbox_TurnedOff.PlayOneShotOnCamera();
+                    break;
             }
-            else if (state == MultiCheckboxState.Partial)
-            {
-                state = MultiCheckboxState.On;
-                SoundDefOf.Checkbox_TurnedOn.PlayOneShotOnCamera();
-            }
-            else
-            {
-                state = MultiCheckboxState.Off;
-                SoundDefOf.Checkbox_TurnedOff.PlayOneShotOnCamera();
-            }
-
-            result = true;
         }
 
         var prevColor = GUI.color;
@@ -140,8 +137,6 @@ internal static class GuiPlus
         }
 
         Text.Anchor = prevAnchor;
-
-        return result;
     }
 
     public static string TextEntryLabeled(Rect rect, string label, string text, string tooltip = null)

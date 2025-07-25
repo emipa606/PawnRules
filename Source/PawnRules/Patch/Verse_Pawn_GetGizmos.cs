@@ -13,7 +13,7 @@ internal static class Verse_Pawn_GetGizmos
 {
     private static void Postfix(Pawn __instance, ref IEnumerable<Gizmo> __result)
     {
-        if (!Registry.IsActive || RimHUD.HideGizmo || WorldRendererUtility.WorldRenderedNow ||
+        if (!Registry.IsActive || RimHUD.HideGizmo || WorldRendererUtility.WorldRendered ||
             Find.Selector.NumSelected != 1 || __instance == null || !__instance.CanHaveRules())
         {
             return;

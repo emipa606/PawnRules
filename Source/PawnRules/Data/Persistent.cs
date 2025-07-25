@@ -16,7 +16,7 @@ internal static class Persistent
     private const string ExportPrefix = "Plan_";
 
     private static readonly Regex ValidNameRegex =
-        new Regex("^(?:[\\p{L}\\p{N}_\\-]|[\\p{L}\\p{N}_\\-]+[\\p{L}\\p{N}_\\- ]*[\\p{L}\\p{N}_\\-]+)$");
+        new("^(?:[\\p{L}\\p{N}_\\-]|[\\p{L}\\p{N}_\\-]+[\\p{L}\\p{N}_\\- ]*[\\p{L}\\p{N}_\\-]+)$");
 
     private static readonly DirectoryInfo ExportsDirectory =
         Mod.ConfigDirectory.CreateSubdirectory(ExportsDirectoryName);
@@ -28,7 +28,7 @@ internal static class Persistent
 
     private static string GetPlanName(FileInfo file)
     {
-        return Path.GetFileNameWithoutExtension(file.Name).Substring(ExportPrefix.Length);
+        return Path.GetFileNameWithoutExtension(file.Name)[ExportPrefix.Length..];
     }
 
     public static IEnumerable<string> GetPlans()

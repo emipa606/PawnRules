@@ -12,11 +12,10 @@ namespace PawnRules;
 internal class Mod : Verse.Mod
 {
     public const string Id = "PawnRules";
-    public const string Name = "Pawn Rules";
+    private const string Name = "Pawn Rules";
     public const string Version = "1.5.0";
 
-    public static readonly DirectoryInfo ConfigDirectory =
-        new DirectoryInfo(Path.Combine(GenFilePaths.ConfigFolderPath, Id));
+    public static readonly DirectoryInfo ConfigDirectory = new(Path.Combine(GenFilePaths.ConfigFolderPath, Id));
 
     private static string currentVersion;
 
@@ -26,7 +25,6 @@ internal class Mod : Verse.Mod
         Settings = GetSettings<PawnRulesSettings>();
 
         currentVersion = VersionFromManifest.GetVersionFromModMetaData(contentPack.ModMetaData);
-        FirstTimeUser = !ConfigDirectory.Exists;
         ConfigDirectory.Create();
 
         Log("Initialized");
@@ -34,7 +32,6 @@ internal class Mod : Verse.Mod
 
     internal PawnRulesSettings Settings { get; }
     public static Mod Instance { get; private set; }
-    public static bool FirstTimeUser { get; private set; }
 
     public static void Log(string message)
     {
@@ -51,7 +48,7 @@ internal class Mod : Verse.Mod
         Messages.Message(message, MessageTypeDefOf.TaskCompletion, false);
     }
 
-    public static string PrefixMessage(string message)
+    private static string PrefixMessage(string message)
     {
         return $"[{Name} v{Version}] {message}";
     }

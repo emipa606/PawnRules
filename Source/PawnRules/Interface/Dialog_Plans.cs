@@ -9,7 +9,7 @@ namespace PawnRules.Interface;
 
 internal class Dialog_Plans : WindowPlus
 {
-    private readonly Listing_StandardPlus _listing = new Listing_StandardPlus();
+    private readonly Listing_StandardPlus _listing = new();
     private IEnumerable<string> _plans;
     private string _selected;
 
@@ -29,10 +29,7 @@ internal class Dialog_Plans : WindowPlus
     private void GetPlans()
     {
         _plans = Persistent.GetPlans();
-        if (_selected == null)
-        {
-            _selected = _plans.FirstOrDefault();
-        }
+        _selected ??= _plans.FirstOrDefault();
     }
 
     private void LoadPlan()

@@ -4,10 +4,10 @@ namespace PawnRules.Data;
 
 internal class RestrictionType : IPresetableType
 {
-    public static readonly RestrictionType Food = new RestrictionType("Food", Lang.Get("RestrictionType.Food"),
+    public static readonly RestrictionType Food = new("Food", Lang.Get("RestrictionType.Food"),
         Lang.Get("RestrictionType.FoodPlural"), Lang.Get("RestrictionType.FoodCategorization"));
 
-    public static readonly RestrictionType Bonding = new RestrictionType("Bonding", Lang.Get("RestrictionType.Bonding"),
+    public static readonly RestrictionType Bonding = new("Bonding", Lang.Get("RestrictionType.Bonding"),
         Lang.Get("RestrictionType.BondingPlural"), Lang.Get("RestrictionType.BondingCategorization"));
 
     public static readonly RestrictionType[] List =

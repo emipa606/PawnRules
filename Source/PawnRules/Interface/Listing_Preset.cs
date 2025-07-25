@@ -15,18 +15,18 @@ internal class Listing_Preset<T>(
     Action onRevert)
     where T : Presetable
 {
-    private readonly Listing_StandardPlus _listing = new Listing_StandardPlus();
-    private readonly Listing_StandardPlus _presetListing = new Listing_StandardPlus();
+    private readonly Listing_StandardPlus _listing = new();
+    private readonly Listing_StandardPlus _presetListing = new();
 
     private T _lastSelected;
 
     public IPresetableType Type { get; set; } = type;
 
-    public Action OnSelect { get; } = onSelect;
-    public Action OnSave { get; } = onSave;
-    public Action OnRevert { get; } = onRevert;
+    private Action OnSelect { get; } = onSelect;
+    private Action OnSave { get; } = onSave;
+    private Action OnRevert { get; } = onRevert;
 
-    public bool EditMode { get; set; }
+    public bool EditMode { get; private set; }
     public T Selected { get; set; } = selected;
     public T[] FixedPresets { get; set; } = fixedPresets;
     public bool IsUnsaved => _lastSelected != null;

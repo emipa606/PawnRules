@@ -9,10 +9,9 @@ namespace PawnRules.Data;
 
 internal class Rules : Presetable
 {
-    private readonly Dictionary<AddonOption, object> _addonValues = new Dictionary<AddonOption, object>();
+    private readonly Dictionary<AddonOption, object> _addonValues = new();
 
-    private readonly Dictionary<RestrictionType, Restriction> _restrictions =
-        new Dictionary<RestrictionType, Restriction>();
+    private readonly Dictionary<RestrictionType, Restriction> _restrictions = new();
 
     public bool AllowArtisan = true;
 
@@ -22,12 +21,14 @@ internal class Rules : Presetable
     {
     }
 
+    // ReSharper disable once MemberCanBePrivate.Global
     public Rules(Pawn pawn, PawnType type = null)
     {
         Pawn = pawn;
         Type = type ?? pawn.GetTargetType();
     }
 
+    // ReSharper disable once MemberCanBePrivate.Global
     public Rules(PawnType type, string name) : base(name)
     {
         Type = type;

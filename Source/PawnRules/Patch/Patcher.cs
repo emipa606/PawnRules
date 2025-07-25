@@ -13,14 +13,14 @@ internal static class Patcher
         Harmony.PatchAll(Assembly.GetExecutingAssembly());
     }
 
-    public static Harmony Harmony { get; } = new Harmony(Mod.Id);
+    private static Harmony Harmony { get; } = new(Mod.Id);
 
     public static void ApplyLanguageOverrides()
     {
         OverrideLanguageKey("FoodPolicy", Lang.Get("PresetType.Rules"));
     }
 
-    public static void OverrideLanguageKey(string key, string value)
+    private static void OverrideLanguageKey(string key, string value)
     {
         if (!LanguageDatabase.activeLanguage.keyedReplacements.Remove(key, out var original))
         {

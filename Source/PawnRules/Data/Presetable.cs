@@ -14,7 +14,7 @@ internal abstract class Presetable : IExposable, ILoadReferenceable
     private static readonly string VoidName = Lang.Get("Preset.None");
 
     private static readonly Regex ValidNameRegex =
-        new Regex("^(?:[\\p{L}\\p{N}]|[\\p{L}\\p{N}]+[\\p{L}\\p{N} ]*[\\p{L}\\p{N}])$");
+        new("^(?:[\\p{L}\\p{N}]|[\\p{L}\\p{N}]+[\\p{L}\\p{N} ]*[\\p{L}\\p{N}])$");
 
     private static int _count;
     protected readonly int Id;
@@ -32,7 +32,7 @@ internal abstract class Presetable : IExposable, ILoadReferenceable
 
     public IPresetableType Type { get; protected set; }
     public string Name { get; set; }
-    public bool IsVoid { get; protected set; }
+    public bool IsVoid { get; private set; }
 
     public bool IsPreset => !Name.NullOrEmpty();
 
@@ -86,7 +86,7 @@ internal abstract class Presetable : IExposable, ILoadReferenceable
         }
     }
 
-    public static bool NameIsValid<T>(IPresetableType type, string name)
+    private static bool NameIsValid<T>(IPresetableType type, string name)
     {
         return name.Length <= MaxIdLength &&
                !string.Equals(name, Lang.Get("Preset.None"), StringComparison.OrdinalIgnoreCase) &&

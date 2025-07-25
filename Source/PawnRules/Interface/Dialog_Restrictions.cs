@@ -9,10 +9,10 @@ namespace PawnRules.Interface;
 
 internal class Dialog_Restrictions : WindowPlus
 {
-    private readonly Listing_StandardPlus _categoryList = new Listing_StandardPlus();
+    private readonly Listing_StandardPlus _categoryList = new();
 
-    private readonly Listing_StandardPlus _headerList = new Listing_StandardPlus();
-    private readonly Listing_StandardPlus _membersList = new Listing_StandardPlus();
+    private readonly Listing_StandardPlus _headerList = new();
+    private readonly Listing_StandardPlus _membersList = new();
     private readonly Listing_Preset<Restriction> _presetList;
     private readonly Rules _rules;
     private readonly RestrictionType _type;
@@ -31,7 +31,7 @@ internal class Dialog_Restrictions : WindowPlus
         RefreshTemplate();
     }
 
-    public override Vector2 InitialSize => new Vector2(800f, 600f);
+    public override Vector2 InitialSize => new(800f, 600f);
 
     public static void Open(RestrictionType type, Rules rules)
     {

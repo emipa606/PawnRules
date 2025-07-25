@@ -40,18 +40,15 @@ internal class RestrictionTemplate
             return FoodCache.Any(def => def.defName == defName);
         }
 
-        if (type == RestrictionType.Bonding)
-        {
-            return AnimalCache.Any(def => def.defName == defName);
-        }
-
-        throw new Mod.Exception("Invalid restriction type");
+        return type == RestrictionType.Bonding
+            ? AnimalCache.Any(def => def.defName == defName)
+            : throw new Mod.Exception("Invalid restriction type");
     }
 
     private static RestrictionTemplate GetFoodsCategorized(Restriction restriction)
     {
         var list = new Dictionary<string, Category>
-            { [ThingCategoryDefOf.Foods.LabelCap] = new Category(ThingCategoryDefOf.Foods.LabelCap) };
+            { [ThingCategoryDefOf.Foods.LabelCap] = new(ThingCategoryDefOf.Foods.LabelCap) };
 
         foreach (var food in FoodCache)
         {

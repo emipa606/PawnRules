@@ -18,7 +18,7 @@ internal static class Extensions
         return $"<b>{self}</b>";
     }
 
-    public static int LastIndex(this IList self)
+    private static int LastIndex(this IList self)
     {
         return self.Count - 1;
     }
@@ -96,7 +96,7 @@ internal static class Extensions
         return new Rect(self.x + x, self.y + y, self.width + width, self.height + height);
     }
 
-    public static Rect Round(this Rect self)
+    private static Rect Round(this Rect self)
     {
         return new Rect(Mathf.Round(self.x), Mathf.Round(self.y), Mathf.Round(self.width), Mathf.Round(self.height));
     }
@@ -131,18 +131,9 @@ internal static class Extensions
 
         foreach (var width in widths)
         {
-            float newWidth;
+            var newWidth = width >= 0f ? width : unfixedWidth;
 
-            if (width >= 0f)
-            {
-                newWidth = width;
-                rects.Add(new Rect(currentX, self.y, newWidth, self.height).Round());
-            }
-            else
-            {
-                newWidth = unfixedWidth;
-                rects.Add(new Rect(currentX, self.y, newWidth, self.height).Round());
-            }
+            rects.Add(new Rect(currentX, self.y, newWidth, self.height).Round());
 
             currentX = Mathf.Min(self.xMax, currentX + newWidth + (newWidth > 0f ? padding : 0f));
         }
@@ -180,18 +171,9 @@ internal static class Extensions
 
         foreach (var height in heights)
         {
-            float newHeight;
+            var newHeight = height >= 0f ? height : unfixedHeight;
 
-            if (height >= 0f)
-            {
-                newHeight = height;
-                rects.Add(new Rect(self.x, currentY, self.width, newHeight).Round());
-            }
-            else
-            {
-                newHeight = unfixedHeight;
-                rects.Add(new Rect(self.x, currentY, self.width, newHeight).Round());
-            }
+            rects.Add(new Rect(self.x, currentY, self.width, newHeight).Round());
 
             currentY = Mathf.Min(self.yMax, currentY + newHeight + (newHeight > 0f ? padding : 0f));
         }

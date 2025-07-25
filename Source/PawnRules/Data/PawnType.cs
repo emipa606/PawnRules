@@ -5,19 +5,19 @@ namespace PawnRules.Data;
 
 internal class PawnType : IPresetableType
 {
-    public static readonly PawnType Colonist = new PawnType("Colonist", Lang.Get("PawnType.Colonist"),
+    public static readonly PawnType Colonist = new("Colonist", Lang.Get("PawnType.Colonist"),
         Lang.Get("PawnType.ColonistPlural"), OptionTarget.Colonist);
 
-    public static readonly PawnType Animal = new PawnType("Animal", Lang.Get("PawnType.Animal"),
+    public static readonly PawnType Animal = new("Animal", Lang.Get("PawnType.Animal"),
         Lang.Get("PawnType.AnimalPlural"), OptionTarget.Animal);
 
-    public static readonly PawnType Guest = new PawnType("Guest", Lang.Get("PawnType.Guest"),
+    public static readonly PawnType Guest = new("Guest", Lang.Get("PawnType.Guest"),
         Lang.Get("PawnType.GuestPlural"), OptionTarget.Guest);
 
-    public static readonly PawnType Prisoner = new PawnType("Prisoner", Lang.Get("PawnType.Prisoner"),
+    public static readonly PawnType Prisoner = new("Prisoner", Lang.Get("PawnType.Prisoner"),
         Lang.Get("PawnType.PrisonerPlural"), OptionTarget.Prisoner);
 
-    public static readonly PawnType Slave = new PawnType("Slave", Lang.Get("PawnType.Slave"),
+    public static readonly PawnType Slave = new("Slave", Lang.Get("PawnType.Slave"),
         Lang.Get("PawnType.SlavePlural"), OptionTarget.Slave);
 
     public static readonly PawnType[] List =

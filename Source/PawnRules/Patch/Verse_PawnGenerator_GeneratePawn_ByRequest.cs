@@ -1,11 +1,13 @@
 ﻿using HarmonyLib;
 using PawnRules.Data;
 using RimWorld;
+using RimWorld.Planet;
 using Verse;
 
 namespace PawnRules.Patch;
 
-[HarmonyPatch(typeof(PawnGenerator), nameof(PawnGenerator.GeneratePawn), typeof(PawnKindDef), typeof(Faction))]
+[HarmonyPatch(typeof(PawnGenerator), nameof(PawnGenerator.GeneratePawn), typeof(PawnKindDef), typeof(Faction),
+    typeof(PlanetTile))]
 public static class Verse_PawnGenerator_GeneratePawn_ByRequest
 {
     public static void Postfix(ref Pawn __result)
