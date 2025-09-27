@@ -1,5 +1,8 @@
 # Changelog for PawnRules
 
+1.6.1 - Pawn rules gizmo should be visible in space
+
+
 1.6.0 - Mod updated for 1.6 and passed autotests
 
 

@@ -13,8 +13,9 @@ internal static class Verse_Pawn_GetGizmos
 {
     private static void Postfix(Pawn __instance, ref IEnumerable<Gizmo> __result)
     {
-        if (!Registry.IsActive || RimHUD.HideGizmo || WorldRendererUtility.WorldRendered ||
-            Find.Selector.NumSelected != 1 || __instance == null || !__instance.CanHaveRules())
+        if (!Registry.IsActive || RimHUD.HideGizmo || __instance == null ||
+            __instance.Map?.Biome.inVacuum == false && WorldRendererUtility.WorldRendered ||
+            Find.Selector.NumSelected != 1 || !__instance.CanHaveRules())
         {
             return;
         }

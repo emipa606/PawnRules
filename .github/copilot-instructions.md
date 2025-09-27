@@ -1,50 +1,45 @@
-# GitHub Copilot Instructions for RimWorld Modding Project
+# GitHub Copilot Instructions for Pawn Rules (Continued)
 
 ## Mod Overview and Purpose
 
-This RimWorld mod aims to enhance the game's rule and restriction system. It provides custom behaviors for pawns, allowing developers to create rich, customizable rule sets governing various aspects of pawns' lives. The mod is constructed using C# and integrates with the game through the use of Harmony patches, alongside XML configuration files that define in-game content and behaviors.
+**Pawn Rules (Continued)** is a mod for RimWorld that allows granular control over individual colonists, animals, guests, and prisoners by assigning custom rules. These rules can be used to customize behavior, dietary preferences, relationship restrictions, and construction permissions to better manage your colony without micromanaging every aspect.
+
+Originally created by Jaxes and now updated to support RimWorld’s newest features, including slaves, the mod also provides options to exclude animals from certain rule applications. The aim is to give you more control over your colony's social, dietary, and work dynamics.
 
 ## Key Features and Systems
 
-- **Option Handles**: Implement different options or rules that can be applied to pawns. These allow dynamic interaction with pawn settings.
-- **Pawns and Restrictions**: Custom restriction types and templates provide versatile rules, enabling players to enforce specific conditions on pawns.
-- **Custom Dialog Interfaces**: A series of `Dialog_*` classes facilitate interaction with users, providing intuitive UI elements to manage rules and restrictions.
-- **Addon Management**: Through classes like `AddonManager`, the mod provides a system to manage additional features or modifications.
+- **Rule Customization:** Assign individual rules to any pawn in your colony.
+- **Flexible Rules:** Disallow pawns from eating certain foods, bonding with specific animals, starting new romances, or constructing items that require a quality level.
+- **Ease of Use:** Easily access the rules dialog via the pawn’s HUD.
+- **No Game Breaks:** The mod can be added or removed at any time without negatively affecting saved games.
+- **Presets and Defaults:** Import and export rule presets between games, and apply default settings to new pawns or newborn animals.
+- **Localization Support:** Encourages community-driven translation submods rather than embedding multiple languages within the mod.
 
 ## Coding Patterns and Conventions
 
-- **Naming Conventions**: Use PascalCase for class names and method names, camelCase for local variables and method parameters, and ALL_CAPS for constants.
-- **Accessibility**: Favor using `internal` for class and method access within the mod, indicating their consumption within the mod's assembly.
-- **Class Design**: 
-  - Use `abstract` classes for base class functionalities like OptionHandle, promoting inheritance for specific implementations.
-  - Employ `static` classes such as `AddonManager` and `Patcher` for singleton-like behavior ensuring a single class instance.
+- **Naming Conventions:** Classes are named using PascalCase, while methods use camelCase.
+- **Abstract and Generic Classes:** Used extensively for highly customizable and extendable systems (e.g., `OptionHandle<T>`).
+- **Static Helpers:** Static classes like `Lang` and `ScribePlus` handle utility functions and data serialization.
 
 ## XML Integration
 
-XML files are integral to this mod, used for defining things like options, rules, and restrictions that attach to pawns. These XML files follow RimWorld's mod structure, ensuring compatibility and ease of installation for players.
-
-- Adhere to RimWorld's schema, ensuring all XML entries are valid and match the expected format.
-- Implement classes like `Presetable` and `Binding` that use XML serialization, guided by the `IExposable` and `ILoadReferenceable` interfaces.
+- XML integration is minimal but supports RimWorld’s default modding structure. XML files are typically used for defining new Defs that interact with the mod’s C# backend.
+- Modders can introduce new rule options via XML files that integrate with the existing `OptionHandle`.
 
 ## Harmony Patching
 
-Harmony is used extensively to modify and extend the base game functionality. Key areas of patching include:
+Harmony is used for non-invasive patches that modulate game behavior:
 
-- **Food Restrictions**: Multiple patches modify how food restrictions affect pawns, leveraging static classes such as `RimWorld_FoodRestriction_Allows_ByThing`.
-- **Interaction Workers**: Custom adjustments on interactions between pawns, notably through classes like `RimWorld_InteractionWorker_RomanceAttempt_SuccessChance`.
-  
-Each patch should adhere to the following conventions:
-
-- Clearly separate patches into individual static classes based on their function.
-- Annotate methods using `[HarmonyPatch]` specifying the target method to patch.
-- Maintain clarity in patch intent within method documentation or inline comments.
+- **Food Restrictions:** Patches around food restriction logic to allow specific control over what pawns can or cannot consume (`RimWorld_FoodRestriction_Allows_ByThing` and variants).
+- **Behavior Overrides:** Modify pawn behaviors such as romance attempts, construction abilities, and animal interactions.
+- **Gizmo Integration:** The rules button is added dynamically to the pawn UI using Harmony patches.
 
 ## Suggestions for Copilot
 
-1. **Pattern Recognition**: Copilot can assist by recognizing patterns in harmony patches, suggesting appropriate method signatures and `[HarmonyPatch]` annotations.
-2. **UI Code Assistance**: Generate boilerplate code for UI components, especially for complex dialogs that utilize RimWorld's UI framework.
-3. **Consistency in Naming**: Ensure suggested names for variables and methods follow the established convention for coherence and readability.
-4. **XML Configuration**: Propose structures for new XML files, following established XML templates, and offer suggestions for serialized field names that match their C# counterparts.
-5. **Error Handling**: Suggest robust error handling patterns in harmony patches and custom C# methods to ensure stability and debugging ease.
+1. **Auto-Generate Stubs:** For new rule options or dialog windows, generate initial stubs with necessary methods like `ExposeData()` for serialization.
+2. **XML and C# Cohesion:** Suggest methods or class modifications to ensure seamless XML integration when new def types are introduced.
+3. **Harmony Tips:** Provide common patterns for Harmony patches that involve state checks or conditional alterations without creating bugs in the game logic.
+4. **Localization Support:** Offer translation key suggestions and their implementations within the code to enable easy translation by third-party localizers.
+5. **Property Handling:** Recommend methods for handling dynamic properties in classes such as `OptionHandle` that dictate how rules apply to specific pawns.
 
-By following these organized instructions, you can effectively utilize GitHub Copilot to enhance development efficiency for RimWorld mods.
+This file aims to guide developers in maintaining and expanding the functionality of the "Pawn Rules" mod. Detailed understanding of RimWorld's mod structure and the Harmony library would optimize usage of these suggestions.
