@@ -15,8 +15,8 @@
   <PawnRules.Button.RemoveMod>移除模块</PawnRules.Button.RemoveMod>
   <PawnRules.Button.RemoveModDesc>这将删除当前游戏中所有角色的所有规则，并停用该 MOD。</PawnRules.Button.RemoveModDesc>
   <PawnRules.Button.RemoveModConfirm>你确定要这样做吗？</PawnRules.Button.RemoveModConfirm>
-  <PawnRules.Button.RemoveModComplete>现在游戏将重新启动。</PawnRules.Button.RemoveModComplete>
-  <PawnRules.Button.RemoveModAndAddonsComplete>现在游戏将重新启动。</PawnRules.Button.RemoveModAndAddonsComplete>
+  <PawnRules.Button.RemoveModComplete>已创建一个名为“{0}”的存档，其中不包含此模组的任何痕迹。\n\n游戏现在将重新启动。</PawnRules.Button.RemoveModComplete>
+  <PawnRules.Button.RemoveModAndAddonsComplete>已创建名为“{0}”的存档，其中不包含此模组或以下任何附加模组的痕迹：\n\n{1}\n\n游戏现在将重新开始。</PawnRules.Button.RemoveModAndAddonsComplete>
   <PawnRules.Button.PresetNew>新</PawnRules.Button.PresetNew>
   <PawnRules.Button.PresetNewDesc>创建新预置</PawnRules.Button.PresetNewDesc>
   <PawnRules.Button.PresetEdit>编辑</PawnRules.Button.PresetEdit>
@@ -70,7 +70,7 @@
   <PawnRules.Rules.AllowArtisan>允许工匠</PawnRules.Rules.AllowArtisan>
   <PawnRules.Rules.AllowArtisanDesc>如果切换为关闭，则不会建造任何有质量等级的建筑。</PawnRules.Rules.AllowArtisanDesc>
   <PawnRules.Rules.NotArtisanReason>不允许工匠建造</PawnRules.Rules.NotArtisanReason>
-  <PawnRules.Rules.NotArtisanJob>构建</PawnRules.Rules.NotArtisanJob>
+  <PawnRules.Rules.NotArtisanJob>构造{0}</PawnRules.Rules.NotArtisanJob>
   <PawnRules.AnimalCategory.Pet>常见宠物</PawnRules.AnimalCategory.Pet>
   <PawnRules.AnimalCategory.Farm>农场动物</PawnRules.AnimalCategory.Farm>
   <PawnRules.AnimalCategory.Herd>群居动物</PawnRules.AnimalCategory.Herd>

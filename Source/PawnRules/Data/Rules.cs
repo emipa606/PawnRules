@@ -90,10 +90,10 @@ internal class Rules : Presetable
             AllowCourting = XmlConvert.ToBoolean(allowCourting);
         }
 
-        var allowArtisan = xml.Element("AllowCourting")?.Value;
+        var allowArtisan = xml.Element("AllowArtisan")?.Value;
         if (allowArtisan != null)
         {
-            AllowCourting = XmlConvert.ToBoolean(allowArtisan);
+            AllowArtisan = XmlConvert.ToBoolean(allowArtisan);
         }
     }
 

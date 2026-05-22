@@ -1,15 +1,15 @@
 # [Pawn Rules (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=3024243615)
 
-![Image](https://i.imgur.com/buuPQel.png)
+![Image](https://img.litet.net/logos/Info.png)
 
 Update of Jaxes mod https://steamcommunity.com/sharedfiles/filedetails/?id=1499843448
 
 - Added support for Slaves
 - Added option to not use it for animals
 
-![Image](https://i.imgur.com/pufA0kM.png)
+![Image](https://img.litet.net/logos/Notice.png)
 	
-![Image](https://i.imgur.com/Z4GOv8H.png)
+![Image](https://img.litet.net/logos/OriginalDescription.png)
 
 *Tired of feeding your prisoners Lavish Meals?
 Need your animal handlers to stop bonding with livestock?
@@ -55,7 +55,7 @@ This mod is not compatible with my other mod [Animal Food Restrictions](https://
 
 Pawn Rules supports addons created by other modders by allowing easy creation of new rule options while handling the GUI and world storage saving. [Check out the wiki on addons.](https://github.com/Jaxe-Dev/PawnRules/wiki/addons)
 
-![Image](https://i.imgur.com/PwoNOj4.png)
+![Image](https://img.litet.net/logos/ReportingIssues.png)
 
 
 
@@ -69,4 +69,4 @@ Pawn Rules supports addons created by other modders by allowing easy creation of
 
  
 
-[![Image](https://img.shields.io/github/v/release/emipa606/PawnRules?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/3024243615) | tags:  colonist management
+[![Image](https://img.shields.io/github/v/release/emipa606/PawnRules?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/3024243615) | tags: colonist management

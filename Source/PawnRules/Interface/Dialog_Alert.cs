@@ -25,7 +25,7 @@ internal class Dialog_Alert : Window
     {
         doCloseButton = false;
         closeOnAccept = true;
-        closeOnClickedOutside = false;
+        closeOnClickedOutside = true;
         absorbInputAroundWindow = true;
 
         _message = message;
@@ -49,38 +49,47 @@ internal class Dialog_Alert : Window
 
     public override void DoWindowContents(Rect rect)
     {
-        var listing = new Listing_Standard();
-        var vGrid = rect.GetVGrid(4f, -1f, 30f);
+        var buttonHeight = 30f;
+        var buttonWidth = 100f;
+        var gap = 8f;
+        var buttonRowY = rect.height - buttonHeight;
+        var messageRect = new Rect(0f, 0f, rect.width, buttonRowY - gap);
 
-        listing.Begin(vGrid[1]);
-        listing.Label(_message);
-        listing.End();
+        var wrap = Text.WordWrap;
+        var anchor = Text.Anchor;
+        Text.WordWrap = true;
+        Text.Anchor = TextAnchor.UpperLeft;
+        Widgets.Label(messageRect, _message);
+        Text.Anchor = anchor;
+        Text.WordWrap = wrap;
 
-        var hGrid = vGrid[2].GetHGrid(4f, 100f, -1f);
+        if (_buttons == Buttons.Ok)
+        {
+            var okRect = new Rect((rect.width - buttonWidth) / 2f, buttonRowY, buttonWidth, buttonHeight);
+            if (Widgets.ButtonText(okRect, Lang.Get("Button.OK")))
+            {
+                _isAccepted = true;
+                _onAccept?.Invoke();
+                Close();
+            }
 
-        listing.Begin(_buttons == Buttons.Ok ? vGrid[3] : hGrid[1]);
+            return;
+        }
 
-        if (listing.ButtonText(_buttons == Buttons.YesNo ? Lang.Get("Button.Yes") : Lang.Get("Button.OK")))
+        var leftButton = new Rect((rect.width - (buttonWidth * 2f) - gap) / 2f, buttonRowY, buttonWidth, buttonHeight);
+        var rightButton = new Rect(leftButton.xMax + gap, buttonRowY, buttonWidth, buttonHeight);
+
+        if (Widgets.ButtonText(leftButton, _buttons == Buttons.YesNo ? Lang.Get("Button.Yes") : Lang.Get("Button.OK")))
         {
             _isAccepted = true;
             _onAccept?.Invoke();
             Close();
         }
 
-        listing.End();
-
-        if (_buttons == Buttons.Ok)
-        {
-            return;
-        }
-
-        listing.Begin(hGrid[2]);
-        if (listing.ButtonText(_buttons == Buttons.YesNo ? Lang.Get("Button.No") : Lang.Get("Button.Cancel")))
+        if (Widgets.ButtonText(rightButton, _buttons == Buttons.YesNo ? Lang.Get("Button.No") : Lang.Get("Button.Cancel")))
         {
             Close();
         }
-
-        listing.End();
     }
 
     public override void Close(bool doCloseSound = true)
