@@ -1,49 +1,40 @@
-# Copilot Instructions for RimWorld Modding Project
+# GitHub Copilot Instructions for Pawn Rules (Continued)
 
 ## Mod Overview and Purpose
 
-### Mod Name: Pawn Rules (Continued)
-**Description**: An update of Jaxes' mod, this project adds advanced management features for pawns, supported new elements like slaves and animals. The mod allows users to assign customized rules to colonists, animals, guests, and prisoners to enhance gameplay and maintain control over various interactions and restrictions within the game.
-
-**Purpose**: The mod aims to improve player control over pawns by enabling the assignment of specific behavioral rules. These rules prevent undesired actions such as feeding lavish meals to prisoners, bonding with livestock, or allowing certain colonists to enter new romantic relationships.
+Pawn Rules (Continued) is a RimWorld mod that allows custom rules to be assigned individually to your colonists, animals, guests, and prisoners. The mod is a continuation of Jaxe's original Pawn Rules mod and has been updated to include support for Slaves and an option to not use the rules for animals. The mod also allows default rules to be set for new pawns, including newborn and hatched animals.
 
 ## Key Features and Systems
 
-- **Customizable Rules**: Assign rules to pawns covering diet, animal bonding, romance, and construction activities.
-- **Rule Management**: The ability to disable or hide rules from the GUI, import/export rule presets, ensure new born animals inherit rules, and establish default rules for new pawns.
-- **Seamless Interface**: Integration with RimHUD to replace the food restriction button for easy rule management.
+- Custom rules that can be applied individually to pawns, including policy selection on the Animals tab
+- Policy names can include spaces and special characters
+- Default rules that can be set for new pawns
+- Import and export of rules presets and defaults between games
+- Compatibility with other mods
+- Easy creation of new rule options by other modders
 
 ## Coding Patterns and Conventions
 
-- **Class Design**: Follow inheritance where necessary, as seen in `OptionHandle<T>`, which extends `OptionHandle`.
-- **Access Modifiers**: Use `internal` access for classes and methods not intended for public API exposure (e.g., `AddonManager`, `Binding`).
-- **Method Naming**: Employ descriptive method names that reveal intent, such as `ExposeData`, `IsUsedBy`, and `InitVoids`.
-- **Convention**: Use PascalCase for class and method names to maintain consistency with C# conventions.
+- The mod follows the standard RimWorld coding conventions.
+- XML files are used for defining game objects and their properties.
+- Harmony patching is used to modify the game's existing code.
+- The mod uses a modular architecture, with separate files for different features and systems.
+- C# files are used for implementing the mod's logic.
 
 ## XML Integration
 
-- **Data Management**: Ensure that XML data for rules and configurations is correctly managed through interfaces like `IExposable`.
-- **Persistence**: Utilize the `ExposeData` method in classes such as `Binding` and `Presetable` for saving/loading data states.
+The mod uses XML files to define game objects and their properties. The XML files are located in the "Defs" folder and include definitions for WorldObjectDefs and other game objects.
 
 ## Harmony Patching
 
-- **Patch Strategy**: Use Harmony to patch methods in RimWorld's base game classes to extend or alter functionality.
-- Implement the concept of lightweight patching by utilizing specific patches like `RimWorld_FoodUtility_WillEat_ByThing`.
-- **Organization**: Keep patches within dedicated static classes and follow the naming structure such as `RimWorld_<ClassName>_<MethodName>` for clarity.
+Harmony patching is used to modify the game's existing code. The mod uses Harmony to patch methods and add custom behavior.
 
 ## Suggestions for Copilot
 
-- **Class Templates**: Provide templates and suggestions for commonly used classes such as rule management and dialog windows.
-- **Harmony Setup**: Automate the generation of Harmony patches by providing structure and boilerplate code.
-- **More Suggestive Context**: Recognize coding patterns to offer completions for method overrides, e.g., `ExposeData` for handling data serialization.
-- **GUI Elements**: Suggest GUI components, ensuring they follow the game's user interface guidelines.
-- **Translation Support**: Encourage and assist in the setup for localization by suggesting interfaces for language management.
-
-## Final Notes
-
-This mod is designed to not disrupt existing games, ensuring a smooth experience when adding or removing it. Contributors through translations are encouraged to manage language packs as separate submods. Technical support prioritizes Discord channels for real-time issue tracking and resolution.
-
-For further documentation, refer to the project's wiki on GitHub, where detailed explanations and development guidelines are available for extension and contribution.
+- When working on new rule options, consider using the existing code as a reference for implementing the logic and UI.
+- When creating new XML definitions, refer to the existing XML files for examples of how to define game objects and their properties.
+- When using Harmony patching, make sure to test the patches thoroughly to ensure they work as expected.
+- When contributing to the mod, make sure to follow the coding conventions and patterns used in the existing code.
 
 ## Project Solution Guidelines
 - Relevant mod XML files are included as Solution Items under the solution folder named XML, these can be read and modified from within the solution.
@@ -52,3 +43,11 @@ For further documentation, refer to the project's wiki on GitHub, where detailed
 - When making functional changes in this mod, ensure the documented features stay in sync with implementation; use the in-solution `.github` copy as the primary file.
 - In the solution is also a project called Assembly-CSharp, containing a read-only version of the decompiled game source, for reference and debugging purposes.
 - For any new documentation, update this copilot-instructions.md file rather than creating separate documentation files.
+
+
+## Hard rules (must follow)
+- Do NOT run commands that modify the repo (no git commit, git apply, dotnet format) unless explicitly asked.
+- Prefer minimal reads: read only the smallest code region needed (around the suspicious lines).
+- When mentioning SonarQube issues, automatically use the SonarQube MCP service to fetch and address issues instead of making inferred fixes without querying SonarQube first.
+- When mentioning the rimworld log, automatically use the Rimworld MCP service to fetch the log.
+

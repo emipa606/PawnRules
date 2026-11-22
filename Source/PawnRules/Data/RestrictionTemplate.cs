@@ -12,7 +12,7 @@ internal class RestrictionTemplate
         .Where(kindDef => kindDef.RaceProps.Animal).OrderBy(animal => animal.label).ToArray();
 
     private static readonly ThingDef[] FoodCache = DefDatabase<ThingDef>.AllDefs.Where(food => food.IsIngestible)
-        .ToList().OrderBy(food => food.category).ThenBy(food => food.FirstThingCategory?.index)
+        .OrderBy(food => food.category).ThenBy(food => food.FirstThingCategory?.index)
         .ThenBy(food => food.label).ToArray();
 
     public readonly IEnumerable<Category> Categories;
@@ -149,10 +149,13 @@ internal class RestrictionTemplate
                 return MultiCheckboxState.Off;
             }
 
-            var first = Members.First().Value;
-            return Members.All(q => q.Value == first)
-                ? first ? MultiCheckboxState.On : MultiCheckboxState.Off
-                : MultiCheckboxState.Partial;
+            var first = Members[0].Value;
+            if (Members.All(q => q.Value == first))
+            {
+                return first ? MultiCheckboxState.On : MultiCheckboxState.Off;
+            }
+
+            return MultiCheckboxState.Partial;
         }
 
         public void UpdateState(MultiCheckboxState state)

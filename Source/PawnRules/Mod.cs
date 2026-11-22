@@ -103,5 +103,5 @@ internal class Mod : Verse.Mod
         Registry.Initialize();
     }
 
-    internal class Exception(string message) : System.Exception(PrefixMessage(message));
+    public class Exception(string message) : System.Exception(PrefixMessage(message));
 }

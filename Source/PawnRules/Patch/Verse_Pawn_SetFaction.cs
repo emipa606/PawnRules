@@ -8,7 +8,7 @@ namespace PawnRules.Patch;
 [HarmonyPatch(typeof(Pawn), nameof(Pawn.SetFaction))]
 internal static class Verse_Pawn_SetFaction
 {
-    private static void Prefix(Pawn __instance, Faction newFaction)
+    public static void Prefix(Pawn __instance, Faction newFaction)
     {
         if (!Registry.IsActive)
         {

@@ -8,7 +8,7 @@ namespace PawnRules.Patch;
 [HarmonyPatch(typeof(InteractionWorker_RomanceAttempt), nameof(InteractionWorker_RomanceAttempt.RandomSelectionWeight))]
 internal static class RimWorld_InteractionWorker_RomanceAttempt_RandomSelectionWeight
 {
-    private static bool Prefix(ref float __result, Pawn initiator, Pawn recipient)
+    public static bool Prefix(ref float __result, Pawn initiator, Pawn recipient)
     {
         if (!Registry.IsActive)
         {

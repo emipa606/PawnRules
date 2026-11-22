@@ -7,7 +7,7 @@ namespace PawnRules.Patch;
 [HarmonyPatch(typeof(MemoryUtility), nameof(MemoryUtility.ClearAllMapsAndWorld))]
 internal static class Verse_Profile_MemoryUtility_ClearAllMapsAndWorld
 {
-    private static void Prefix()
+    public static void Prefix()
     {
         Registry.Clear();
     }

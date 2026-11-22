@@ -1,6 +1,5 @@
 ﻿using System;
 using PawnRules.Data;
-using PawnRules.Patch;
 using UnityEngine;
 using Verse;
 
@@ -47,13 +46,13 @@ internal class Dialog_Alert : Window
         Find.WindowStack.Add(new Dialog_Alert(message, buttons, onAccept, onCancel));
     }
 
-    public override void DoWindowContents(Rect rect)
+    public override void DoWindowContents(Rect inRect)
     {
         var buttonHeight = 30f;
         var buttonWidth = 100f;
         var gap = 8f;
-        var buttonRowY = rect.height - buttonHeight;
-        var messageRect = new Rect(0f, 0f, rect.width, buttonRowY - gap);
+        var buttonRowY = inRect.height - buttonHeight;
+        var messageRect = new Rect(0f, 0f, inRect.width, buttonRowY - gap);
 
         var wrap = Text.WordWrap;
         var anchor = Text.Anchor;
@@ -65,18 +64,21 @@ internal class Dialog_Alert : Window
 
         if (_buttons == Buttons.Ok)
         {
-            var okRect = new Rect((rect.width - buttonWidth) / 2f, buttonRowY, buttonWidth, buttonHeight);
-            if (Widgets.ButtonText(okRect, Lang.Get("Button.OK")))
+            var okRect = new Rect((inRect.width - buttonWidth) / 2f, buttonRowY, buttonWidth, buttonHeight);
+            if (!Widgets.ButtonText(okRect, Lang.Get("Button.OK")))
             {
-                _isAccepted = true;
-                _onAccept?.Invoke();
-                Close();
+                return;
             }
+
+            _isAccepted = true;
+            _onAccept?.Invoke();
+            Close();
 
             return;
         }
 
-        var leftButton = new Rect((rect.width - (buttonWidth * 2f) - gap) / 2f, buttonRowY, buttonWidth, buttonHeight);
+        var leftButton = new Rect((inRect.width - (buttonWidth * 2f) - gap) / 2f, buttonRowY, buttonWidth,
+            buttonHeight);
         var rightButton = new Rect(leftButton.xMax + gap, buttonRowY, buttonWidth, buttonHeight);
 
         if (Widgets.ButtonText(leftButton, _buttons == Buttons.YesNo ? Lang.Get("Button.Yes") : Lang.Get("Button.OK")))
@@ -86,7 +88,8 @@ internal class Dialog_Alert : Window
             Close();
         }
 
-        if (Widgets.ButtonText(rightButton, _buttons == Buttons.YesNo ? Lang.Get("Button.No") : Lang.Get("Button.Cancel")))
+        if (Widgets.ButtonText(rightButton,
+                _buttons == Buttons.YesNo ? Lang.Get("Button.No") : Lang.Get("Button.Cancel")))
         {
             Close();
         }

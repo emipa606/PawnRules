@@ -9,9 +9,9 @@ internal class Listing_StandardPlus : Listing_Standard
     private const float ScrollbarSize = 20f;
     private const float MaxScrollViewHeight = 999999f;
 
-    private bool _scrollable;
-
     private Vector2 _scrollPosition;
+
+    private bool _scrollable;
 
     public override void Begin(Rect rect)
     {

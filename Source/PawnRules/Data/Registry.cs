@@ -497,7 +497,8 @@ internal class Registry : WorldObject
             _savedDefaults.AddRange(_defaults.Values.Where(preset => !preset.IsVoid)
                 .Select(preset => new Binding(preset.Type, preset)).ToArray());
             _savedBindings.AddRange(_rules.Where(rules => rules.Key.CanHaveRules())
-                .Select(rules => new Binding(rules.Key, rules.Value.IsIgnored() ? null : rules.Value)).ToArray());
+                .Select(rules => new Binding(rules.Key,
+                    !rules.Value.IsPreset && rules.Value.IsIgnored() ? null : rules.Value)).ToArray());
         }
 
         Scribe_Values.Look(ref _showFoodPolicy, "showFoodPolicy", true);

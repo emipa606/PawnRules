@@ -9,7 +9,7 @@ namespace PawnRules.Patch;
     MethodType.Getter)]
 internal static class RimWorld_Pawn_FoodRestrictionTracker_CurrentFoodPolicy
 {
-    private static bool Prefix(ref FoodPolicy __result, Pawn ___pawn)
+    public static bool Prefix(ref FoodPolicy __result, Pawn ___pawn)
     {
         if (!Registry.IsActive)
         {

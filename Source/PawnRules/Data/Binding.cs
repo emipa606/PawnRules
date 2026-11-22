@@ -5,11 +5,11 @@ namespace PawnRules.Data;
 
 internal class Binding : IExposable
 {
-    private Rules _individual;
-    private Rules _preset;
     public Pawn Pawn;
     public Rules Rules;
     public PawnType Target;
+    private Rules _individual;
+    private Rules _preset;
 
     private Binding()
     {

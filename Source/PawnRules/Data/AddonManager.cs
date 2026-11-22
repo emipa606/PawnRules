@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Verse;
@@ -7,7 +8,7 @@ namespace PawnRules.Data;
 
 internal static class AddonManager
 {
-    private static readonly Regex KeyRegex = new("[a-zA-Z0-9_]+");
+    private static readonly Regex KeyRegex = new("[a-zA-Z0-9_]+", RegexOptions.None, TimeSpan.FromSeconds(1));
 
     private static readonly Dictionary<string, AddonOption> OptionRegistry = new();
     private static readonly List<ModContentPack> ModRegistry = [];

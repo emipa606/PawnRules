@@ -11,7 +11,7 @@ namespace PawnRules.Patch;
 [HarmonyPatch(typeof(Pawn), nameof(Pawn.GetGizmos))]
 internal static class Verse_Pawn_GetGizmos
 {
-    private static void Postfix(Pawn __instance, ref IEnumerable<Gizmo> __result)
+    public static void Postfix(Pawn __instance, ref IEnumerable<Gizmo> __result)
     {
         if (!Registry.IsActive || RimHUD.HideGizmo || __instance == null ||
             __instance.Map?.Biome.inVacuum == false && WorldRendererUtility.WorldRendered ||

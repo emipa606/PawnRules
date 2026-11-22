@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Text.RegularExpressions;
+using System.Text;
+using System.Xml;
 using System.Xml.Linq;
 using PawnRules.Interface;
 using PawnRules.Patch;
@@ -12,9 +13,6 @@ internal abstract class Presetable : IExposable, ILoadReferenceable
     private const int MaxIdLength = 20;
 
     private static readonly string VoidName = Lang.Get("Preset.None");
-
-    private static readonly Regex ValidNameRegex =
-        new("^(?:[\\p{L}\\p{N}]|[\\p{L}\\p{N}]+[\\p{L}\\p{N} ]*[\\p{L}\\p{N}])$");
 
     private static int _count;
     protected readonly int Id;
@@ -40,7 +38,16 @@ internal abstract class Presetable : IExposable, ILoadReferenceable
     {
         if (Scribe.mode != LoadSaveMode.Saving || IsPreset)
         {
+            var encodedName = Scribe.mode == LoadSaveMode.Saving && Name?.Contains("\\n") == true
+                ? Convert.ToBase64String(Encoding.UTF8.GetBytes(Name))
+                : null;
             Name = ScribePlus.LookValue(Name, "name");
+            encodedName = ScribePlus.LookValue(encodedName, "nameEncoded");
+            // RimWorld's string parser turns a literal backslash-n into a newline.
+            if (Scribe.mode == LoadSaveMode.LoadingVars && encodedName != null)
+            {
+                Name = Encoding.UTF8.GetString(Convert.FromBase64String(encodedName));
+            }
         }
 
         ExposePresetData();
@@ -88,16 +95,41 @@ internal abstract class Presetable : IExposable, ILoadReferenceable
 
     private static bool NameIsValid<T>(IPresetableType type, string name)
     {
-        return name.Length <= MaxIdLength &&
-               !string.Equals(name, Lang.Get("Preset.None"), StringComparison.OrdinalIgnoreCase) &&
-               !string.Equals(name, Lang.Get("Preset.Personalized"), StringComparison.OrdinalIgnoreCase) &&
-               ValidNameRegex.IsMatch(name) && !Registry.PresetNameExists<T>(type, name);
+        if (string.IsNullOrWhiteSpace(name) || name.Length > MaxIdLength ||
+            string.Equals(name, Lang.Get("Preset.None"), StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(name, Lang.Get("Preset.Personalized"), StringComparison.OrdinalIgnoreCase) ||
+            Registry.PresetNameExists<T>(type, name))
+        {
+            return false;
+        }
+
+        for (var i = 0; i < name.Length; i++)
+        {
+            if (char.IsControl(name[i]))
+            {
+                return false;
+            }
+
+            if (XmlConvert.IsXmlChar(name[i]))
+            {
+                continue;
+            }
+
+            if (i + 1 >= name.Length || !XmlConvert.IsXmlSurrogatePair(name[i + 1], name[i]))
+            {
+                return false;
+            }
+
+            i++;
+        }
+
+        return true;
     }
 
     public static T CreateVoidPreset<T>(IPresetableType type) where T : Presetable
     {
         var preset = (T)Activator.CreateInstance(typeof(T), type, VoidName);
-        preset.IsVoid = true;
+        preset?.IsVoid = true;
         return preset;
     }
 

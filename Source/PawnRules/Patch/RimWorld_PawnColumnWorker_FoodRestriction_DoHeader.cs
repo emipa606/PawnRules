@@ -19,7 +19,7 @@ internal static class RimWorld_PawnColumnWorker_FoodRestriction_DoHeader
 
     private static readonly DummyColumnWorker ColumnWorker = new() { def = RulesColumnDef };
 
-    private static bool Prefix(Rect rect, PawnTable table)
+    public static bool Prefix(Rect rect, PawnTable table)
     {
         ColumnWorker.DoHeaderDummy(rect, table);
         var buttonRect = new Rect(rect.x, rect.y + (rect.height - 65f), Mathf.Min(rect.width, 360f), 32f);
@@ -31,11 +31,11 @@ internal static class RimWorld_PawnColumnWorker_FoodRestriction_DoHeader
         return false;
     }
 
-    private class DummyColumnWorker : PawnColumnWorker
+    private sealed class DummyColumnWorker : PawnColumnWorker
     {
         public void DoHeaderDummy(Rect rect, PawnTable table)
         {
-            base.DoHeader(rect, table);
+            DoHeader(rect, table);
         }
 
         public override void DoCell(Rect rect, Pawn pawn, PawnTable table)

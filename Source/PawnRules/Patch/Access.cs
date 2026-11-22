@@ -27,15 +27,15 @@ internal static class Access
 
     public static int Method_RimWorld_FoodUtility_GetMaxRegionsToScan_Call(Pawn getter, bool forceScanWholeMap)
     {
-        return (int)MethodRimWorldFoodUtilityGetMaxRegionsToScan.Invoke(null,
-            [getter, forceScanWholeMap]);
+        return (int)(MethodRimWorldFoodUtilityGetMaxRegionsToScan.Invoke(null,
+            [getter, forceScanWholeMap]) ?? 0);
     }
 
     public static bool Method_RimWorld_FoodUtility_IsFoodSourceOnMapSociallyProper_Call(Thing thing, Pawn getter,
         Pawn eater, bool allowSociallyImproper)
     {
-        return (bool)MethodRimWorldFoodUtilityIsFoodSourceOnMapSociallyProper.Invoke(null,
-            [thing, getter, eater, allowSociallyImproper]);
+        return (bool)(MethodRimWorldFoodUtilityIsFoodSourceOnMapSociallyProper.Invoke(null,
+            [thing, getter, eater, allowSociallyImproper]) ?? false);
     }
 
     public static Thing Method_RimWorld_FoodUtility_SpawnedFoodSearchInnerScan_Call(Pawn eater, IntVec3 root,

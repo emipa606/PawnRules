@@ -12,13 +12,19 @@ namespace PawnRules.Patch;
 [HarmonyPatch(typeof(PawnColumnWorker_FoodRestriction), "DoAssignFoodRestrictionButtons")]
 internal static class RimWorld_PawnColumnWorker_FoodRestriction_DoAssignFoodRestrictionButtons
 {
-    private static bool Prefix(Rect rect, Pawn pawn)
+    public static bool Prefix(Rect rect, Pawn pawn)
     {
         if (Mod.Instance.Settings.NoAnimals && pawn.RaceProps.Animal)
         {
             return true;
         }
 
+        DrawButtons(rect, pawn);
+        return false;
+    }
+
+    internal static void DrawButtons(Rect rect, Pawn pawn)
+    {
         var num = Mathf.FloorToInt((rect.width - 4f) * 0.714285731f);
         var num2 = Mathf.FloorToInt((rect.width - 4f) * 0.2857143f);
         var num3 = rect.x;
@@ -40,8 +46,6 @@ internal static class RimWorld_PawnColumnWorker_FoodRestriction_DoAssignFoodRest
         {
             Dialog_Rules.Open(pawn);
         }
-
-        return false;
 
         Rules GetPayload(Pawn p)
         {

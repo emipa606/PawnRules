@@ -27,12 +27,12 @@ internal abstract class WindowPlus : Window
 
     protected abstract void DoContent(Rect rect);
 
-    public override void DoWindowContents(Rect rect)
+    public override void DoWindowContents(Rect inRect)
     {
         var wordWrap = Text.WordWrap;
         Text.WordWrap = false;
 
-        DoContent(DoTitle(rect));
+        DoContent(DoTitle(inRect));
 
         Text.WordWrap = wordWrap;
     }

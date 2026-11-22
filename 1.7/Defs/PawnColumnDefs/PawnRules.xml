@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <PawnColumnDef>
+    <defName>PawnRules_AnimalRules</defName>
+    <label>rules</label>
+    <workerClass>PawnRules.Interface.PawnColumnWorker_AnimalRules</workerClass>
+    <sortable>true</sortable>
+  </PawnColumnDef>
+</Defs>

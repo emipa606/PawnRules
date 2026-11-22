@@ -11,7 +11,7 @@ namespace PawnRules.Patch;
     typeof(JobDef))]
 internal static class RimWorld_GenConstruct_CanConstruct
 {
-    private static void Postfix(ref bool __result, Thing t, Pawn p, bool checkSkills = true, bool forced = false)
+    public static void Postfix(ref bool __result, Thing t, Pawn p, bool checkSkills = true, bool forced = false)
     {
         if (!Registry.IsActive || !__result)
         {

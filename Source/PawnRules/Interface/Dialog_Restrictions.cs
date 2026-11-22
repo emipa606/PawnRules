@@ -135,6 +135,7 @@ internal class Dialog_Restrictions : WindowPlus
             {
                 members[category.Label] = category.Members.Where(member =>
                     member.Def is ThingDef def && (!def.IsDrug || Registry.AllowDrugsRestriction) &&
+                    _rules.Pawn != null &&
                     (showAll || _rules.Pawn.RaceProps.CanEverEat(def))).ToArray();
             }
             else if (_type == RestrictionType.Bonding)

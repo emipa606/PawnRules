@@ -16,7 +16,8 @@ internal static class Persistent
     private const string ExportPrefix = "Plan_";
 
     private static readonly Regex ValidNameRegex =
-        new("^(?:[\\p{L}\\p{N}_\\-]|[\\p{L}\\p{N}_\\-]+[\\p{L}\\p{N}_\\- ]*[\\p{L}\\p{N}_\\-]+)$");
+        new("^(?:[\\p{L}\\p{N}_\\-]|[\\p{L}\\p{N}_\\-]+[\\p{L}\\p{N}_\\- ]*[\\p{L}\\p{N}_\\-]+)$", RegexOptions.None,
+            TimeSpan.FromSeconds(1));
 
     private static readonly DirectoryInfo ExportsDirectory =
         Mod.ConfigDirectory.CreateSubdirectory(ExportsDirectoryName);

@@ -8,7 +8,7 @@ namespace PawnRules.Patch;
 [HarmonyPatch(typeof(Pawn_GuestTracker), nameof(Pawn_GuestTracker.SetGuestStatus))]
 internal static class RimWorld_Pawn_GuestTracker_SetGuestStatus
 {
-    private static void Prefix(Faction newHost, Pawn ___pawn, GuestStatus guestStatus = GuestStatus.Guest)
+    public static void Prefix(Faction newHost, Pawn ___pawn, GuestStatus guestStatus = GuestStatus.Guest)
     {
         if (!Registry.IsActive)
         {
